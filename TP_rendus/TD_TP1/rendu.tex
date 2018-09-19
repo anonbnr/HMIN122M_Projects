@@ -1,0 +1,161 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[colorlinks,urlcolor=blue]{hyperref} %hyperlinks
+\usepackage[nottoc,notlot,notlof]{tocbibind} %To bind the table of contents to the bibligoraphy
+\usepackage[page,toc,titletoc,title]{appendix} %To add appendices to the document
+\usepackage{packages/tikz-uml} %UML elements
+
+\title{
+  HMIN122M Rendu \\
+  \large TP1
+}
+\author{Bachar Rima \and Joseph Saba}
+\date{\today}
+
+\begin{document}
+\pagestyle{plain}
+
+\maketitle
+
+{
+  \hypersetup{linkcolor=black}
+  \tableofcontents
+}
+
+\section{Modèle conceptuel : UML des cahiers des charges}
+\subsection{Cahier des charges \#1 : les photos}
+\begin{figure}[!ht]
+  \centering
+  \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+      \umlclass[x=-8, y=4]{AppareilPhoto}{
+        \underline{model}: \textsc{varchar}\\
+        type: \textsc{varchar}\\
+        resolution\_x: \textsc{number}\\
+        lens: \textsc{varchar}
+      }{}
+      \umlclass[x=0, y=-2]{Photo}{
+        \underline{code}: \textsc{integer}\\
+        lieu: \textsc{sdo\_geometry}\\
+        date: \textsc{date}\\
+        chemin: \textsc{varchar}
+      }{}
+      \umlclass[x=0, y=4]{Licence}{
+        \underline{id}: \textsc{Integer} \{auto\}\\
+        titre: \textsc{varchar}\\
+        droits: \textsc{varchar}
+      }{}
+      \umlclass[x=0, y=-8]{Configuration}{
+        \underline{id}: \textsc{Integer} \{auto\}\\
+        ouverture\_focale: \textsc{number}\\
+        temps\_exposition: \textsc{varchar}\\
+        flash: \textsc{boolean}\\
+        distance\_focale: \textsc{number}
+      }{}
+      \umlclass[x=8, y=2]{Utilisateur}{
+        \underline{id}: \textsc{varchar} \{hash\}\\
+        nom: \textsc{varchar}\\
+        prenom: \textsc{varchar}\\
+        username: \textsc{varchar}\\
+        email: \textsc{varchar}\\
+        date\_naissance: \textsc{date}\\
+        date\_inscription: \textsc{date}\\
+        pays: \textsc{varchar}
+      }{}
+      \umlassoc[mult1=1, pos1=0.1, mult2=0..N, pos2=2.7, geometry =-|-, stereo=prend, pos stereo=1.2]{Photo}{AppareilPhoto}
+      \umluniassoc[mult1=0..N, mult2=1, stereo=possede\_brevet]{Photo}{Licence}
+      \umlassoc[name=assoc, mult1=1, pos1=0.1, mult2=0..N, pos2=2.7, geometry=-|-, stereo=publie, pos stereo=1.2]{Utilisateur}{Photo}
+      \umlassocclass[x=8, y=-4, geometry=-|]{Publie}{assoc-1}{
+        date\_publication: \textsc{date}\\
+      }{}
+      \umlunicompo{Photo}{Configuration}
+    \end{tikzpicture}
+  }
+  \caption{Cahier des charges \#1 : les photos}
+\end{figure}
+
+\newpage
+
+\subsection{Cahier des charges \#2 : publications, albums, et galeries}
+\begin{figure}[!ht]
+  \centering
+  \begin{tikzpicture}
+    \umlclass[x=0, y=4, type=abstract]{PhotoCollection}{
+      \underline{id}: \textsc{integer} \{auto\}\\
+      date\_creation: \textsc{date}\\
+      nom: \textsc{varchar}
+    }{}
+    \umlemptyclass[x=-2, y=0]{Album}
+    \umlemptyclass[x=2, y=0]{Gallery}
+    \umlemptyclass[x=0, y=-3]{Photo}
+    \umlemptyclass[x=2, y=-6]{Utilisateur}
+    \umlVHVinherit[name=inherit]{Album}{PhotoCollection}
+    \umlVHVinherit{Gallery}{PhotoCollection}
+    \umlnote[x=-5, y=2]{inherit-1}{contraintes: complet et disjoint}
+    \umlNarynode[name=rangeG, x=3, y=-3, right]{range\_gallery}
+    \umlassoc[mult2=0..N, pos2=2, geometry=-|]{Gallery}{rangeG}
+    \umlassoc[mult2=0..N]{Photo}{rangeG}
+    \umlassoc[mult2=0..N, pos2=2, geometry=-|]{Utilisateur}{rangeG}
+    \umlNarynode[name=rangeA, x=-3, y=-3, left]{range\_album}
+    \umlassoc[mult2=0..N, pos2=2, geometry=-|]{Album}{rangeA}
+    \umlassoc[mult2=0..N]{Photo}{rangeA}
+    \umlassoc[mult2=1, pos2=2, geometry=-|]{Utilisateur}{rangeA}
+    \umlnote[x=-6, y=-6]{rangeA}{contraintes: id de Utilisateur = id du Proprietaire de l'Album}
+  \end{tikzpicture}
+  \caption{Cahier des charges \#2 : publications, albums, et galeries}
+\end{figure}
+
+\newpage
+
+\subsection{Cahier des charges \#3 : les interactions entre utilisateurs}
+\begin{figure}[!ht]
+  \centering
+  \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+      \umlclass[x=0, y=4, type=abstract]{ContenuNumerique}{
+        \underline{id}: \textsc{integer} \{auto\}
+      }{}
+      \umlclass[x=8, y=0]{Comment}{
+        date: \textsc{date}\\
+        content: \textsc{text}
+      }{}
+      \umlclass[x=-8, y=0]{Photo}{
+        \underline{code}: \textsc{integer}\\
+        lieu: \textsc{sdo\_geometry}\\
+        date: \textsc{date}\\
+        chemin: \textsc{varchar}\\
+        nb\_views: \textsc{integer}\\
+      }{}
+      \umlemptyclass[x=0, y=0]{Discussion}
+      \umlemptyclass[x=0, y=-6]{Utilisateur}
+      \umlemptyclass[x=-8, y=-6]{Tag}
+      \umlVHVinherit{Photo}{ContenuNumerique}
+      \umlVHVinherit{Comment}{ContenuNumerique}
+      \umlunicompo{Discussion}{Comment}
+      \umlassoc[mult1=0..N, mult2=1..N, stereo=etiquette]{Tag}{Photo}
+      \umlassoc[mult1=1, mult2=0..1, stereo=annotate]{Photo}{Discussion}
+      \umlassoc[mult1=0..N, mult2=0..N, stereo=likes]{Utilisateur}{Photo}
+      \umlassoc[mult1=1, pos1=0.1, mult2=0..N, pos2=1.95, geometry=-|, stereo=commente, pos stereo=1.2]{Utilisateur}{Comment}
+    \end{tikzpicture}
+  }
+  \caption{Cahier des charges \#3 : les interactions entre utilisateurs}
+\end{figure}
+
+\newpage
+
+\section{Modèle relationnel}
+
+\begin{appendices}
+\section*{SQL}
+\subsection{Requêtes de création de la base de données}
+
+\subsection{Requêtes de population de la base de données}
+
+\subsection{Requêtes de l'interrogation de la base de données }
+
+\end{appendices}
+
+\end{document}
