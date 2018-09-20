@@ -38,13 +38,12 @@
         lens: \textsc{varchar}
       }{}
       \umlclass[x=0, y=-2]{Photo}{
-        \underline{code}: \textsc{integer}\\
+        \underline{id}: \textsc{integer}\\
         lieu: \textsc{sdo\_geometry}\\
         chemin: \textsc{varchar}
       }{}
       \umlclass[x=0, y=4]{Licence}{
         \underline{id}: \textsc{Integer} \{auto\}\\
-        titre: \textsc{varchar}\\
         droits: \textsc{varchar}
       }{}
       \umlclass[x=0, y=-8]{Configuration}{
@@ -84,15 +83,18 @@
   \begin{tikzpicture}
     \umlclass[x=0, y=4, type=abstract]{PhotoCollection}{
       \underline{id}: \textsc{integer} \{auto\}\\
-      date\_creation: \textsc{date}\\
       nom: \textsc{varchar}
     }{}
     \umlemptyclass[x=-2, y=0]{Album}
     \umlemptyclass[x=2, y=0]{Gallery}
     \umlemptyclass[x=0, y=-3]{Photo}
-    \umlemptyclass[x=2, y=-6]{Utilisateur}
+    \umlemptyclass[x=8, y=-6]{Utilisateur}
     \umlVHVinherit[name=inherit]{Album}{PhotoCollection}
     \umlVHVinherit{Gallery}{PhotoCollection}
+    \umlassoc[name=assoc, mult1=0..N, mult2=1, geometry=|-, stereo=cree]{Utilisateur}{PhotoCollection}
+    \umlassocclass[x=5, y=2, geometry=-|]{Cree}{assoc-1}{
+      date\_creation: \textsc{date}\\
+    }{}
     \umlnote[x=-5, y=2]{inherit-1}{contraintes: complet et disjoint}
     \umlNarynode[name=rangeG, x=3, y=-3, right]{range\_gallery}
     \umlassoc[mult2=0..N, pos2=2, geometry=-|]{Gallery}{rangeG}
@@ -119,7 +121,7 @@
       }{}
       \umlclass[x=8, y=0]{Comment}{
         \underline{id}: \textsc{integer} \{auto\} <<FK>>\\
-        content: \textsc{text}
+        contenu: \textsc{text}
       }{}
       \umlclass[x=-8, y=0]{Photo}{
         \underline{id}: \textsc{integer} \{auto\} <<FK>>\\
@@ -127,23 +129,25 @@
         chemin: \textsc{varchar}\\
         nb\_views: \textsc{integer}\\
       }{}
-      \umlemptyclass[x=0, y=0]{Discussion}
-      \umlemptyclass[x=-8, y=6]{Utilisateur}
+      \umlclass[x=0, y=0]{Discussion}{
+        \underline{id}: \textsc{integer} \{auto\}
+      }{}
+      \umlemptyclass[x=-10, y=6]{Utilisateur}
       \umlclass[x=-8, y=-6]{Tag}{
         \underline{id}: \textsc{integer} \{auto\}\\
-        content: \textsc{varchar}
+        contenu: \textsc{varchar}
       }{}
       \umlVHVinherit{Photo}{ContenuNumerique}
       \umlVHVinherit{Comment}{ContenuNumerique}
       \umlunicompo{Discussion}{Comment}
-      \umlassoc[name=assoc, mult1=1, pos1=0.1, mult2=0..N, pos2=1, stereo=publie]{Utilisateur}{ContenuNumerique}
+      \umlassoc[name=assoc, mult1=1, pos1=0.1, mult2=0..N, pos2=1, geometry=-|-, stereo=publie]{Utilisateur}{ContenuNumerique}
       \umlassocclass[x=0, y=8, geometry=-|]{Publie}{assoc-1}{
         date\_publication: \textsc{date}\\
       }{}
-      \umlassoc[mult1=0..N, mult2=1..N, stereo=etiquette]{Tag}{Photo}
+      \umlassoc[mult1=0..N, mult2=1..N, stereo=marque]{Tag}{Photo}
       \umlassoc[mult1=1, mult2=0..1, stereo=annotate]{Photo}{Discussion}
-      \umlassoc[mult1=0..N, mult2=0..N, stereo=likes]{Utilisateur}{Photo}
-      \umlassoc[mult1=1, pos1=0.1, mult2=0..N, pos2=1.6, geometry=-|, stereo=commente, pos stereo=1.2]{Utilisateur}{Comment}
+      \umlassoc[geometry=|-, mult1=0..N, pos1=0.1, mult2=0..N, pos2=0.6, stereo=aime, pos stereo=0.4]{Utilisateur}{Photo}
+      \umlassoc[mult1=0..N, pos1=0.1, angle1=90, mult2=0..N, pos2=0.7, angle2=140, loopsize=5cm, stereo=suit, pos stereo=0.5]{Utilisateur}{Utilisateur}
     \end{tikzpicture}
   }
   \caption{Cahier des charges \#3 : les interactions entre utilisateurs}
@@ -152,6 +156,24 @@
 \newpage
 
 \section{Modèle relationnel}
+\begin{itemize}
+  \item \textbf{AppareilPhoto}(\underline{model}, type, resolution\_x, lens)
+  \item \textbf{Licence}(\underline{id}, droits)
+  \item \textbf{Configuration}(\underline{id}, ouverture\_focale, temps\_exposition, flash, distance\_focale)
+  \item \textbf{Utilisateur}(\underline{id}, nom, prenom, username, email, date\_naissance, date\_inscription, pays)
+  \item \textbf{ContenuNumerique}(\underline{id}, \textit{id\_utilisateur}, date\_publication)
+  \item \textbf{PhotoCollection}(\underline{id}, nom, \textit{id\_utilisateur}, date\_creation)
+  \item \textbf{Album}(\textit{\underline{id}})
+  \item \textbf{Gallery}(\textit{\underline{id}})
+  \item \textbf{Photo}(\textit{\underline{id}}, lieu, chemin, nb\_views, \textit{id\_appareil}, \textit{id\_licence}, \textit{id\_configuration})
+  \item \textbf{Discussion}(\underline{id}, \textit{id\_photo})
+  \item \textbf{Comment}(\textit{\underline{id}}, contenu, \textit{id\_discussion})
+  \item \textbf{range\_gallery}(\textit{\underline{id\_gallery}}, \textit{\underline{id\_utilisateur}}, \textit{\underline{id\_photo}})
+  \item \textbf{range\_album}(\textit{\underline{id\_album}}, \textit{\underline{id\_utilisateur}}, \textit{\underline{id\_photo}})\footnote{un \textit{trigger} est requis pour vérifier la contrainte d'intégrité désignant l'unicité du propriétaire des photos dans un album}
+  \item \textbf{aime}(\textit{\underline{id\_utilisateur}}, \textit{\underline{id\_photo}})
+  \item \textbf{suit}(\textit{\underline{id\_utilisateur$_1$}}, \textit{\underline{id\_utilisateur$_2$}})\footnote{Contrainte d'intégrité : \textit{id\_utilisateur$_1$} $\neq$ \textit{id\_utilisateur$_2$}}
+  \item \textbf{marque}(\textit{\underline{id\_tag}}, \textit{\underline{id\_photo}})
+\end{itemize}
 
 \begin{appendices}
 \section*{SQL}
