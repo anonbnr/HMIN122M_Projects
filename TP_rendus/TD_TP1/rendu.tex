@@ -40,7 +40,6 @@
       \umlclass[x=0, y=-2]{Photo}{
         \underline{code}: \textsc{integer}\\
         lieu: \textsc{sdo\_geometry}\\
-        date: \textsc{date}\\
         chemin: \textsc{varchar}
       }{}
       \umlclass[x=0, y=4]{Licence}{
@@ -119,26 +118,32 @@
         \underline{id}: \textsc{integer} \{auto\}
       }{}
       \umlclass[x=8, y=0]{Comment}{
-        date: \textsc{date}\\
+        \underline{id}: \textsc{integer} \{auto\} <<FK>>\\
         content: \textsc{text}
       }{}
       \umlclass[x=-8, y=0]{Photo}{
-        \underline{code}: \textsc{integer}\\
+        \underline{id}: \textsc{integer} \{auto\} <<FK>>\\
         lieu: \textsc{sdo\_geometry}\\
-        date: \textsc{date}\\
         chemin: \textsc{varchar}\\
         nb\_views: \textsc{integer}\\
       }{}
       \umlemptyclass[x=0, y=0]{Discussion}
-      \umlemptyclass[x=0, y=-6]{Utilisateur}
-      \umlemptyclass[x=-8, y=-6]{Tag}
+      \umlemptyclass[x=-8, y=6]{Utilisateur}
+      \umlclass[x=-8, y=-6]{Tag}{
+        \underline{id}: \textsc{integer} \{auto\}\\
+        content: \textsc{varchar}
+      }{}
       \umlVHVinherit{Photo}{ContenuNumerique}
       \umlVHVinherit{Comment}{ContenuNumerique}
       \umlunicompo{Discussion}{Comment}
+      \umlassoc[name=assoc, mult1=1, pos1=0.1, mult2=0..N, pos2=1, stereo=publie]{Utilisateur}{ContenuNumerique}
+      \umlassocclass[x=0, y=8, geometry=-|]{Publie}{assoc-1}{
+        date\_publication: \textsc{date}\\
+      }{}
       \umlassoc[mult1=0..N, mult2=1..N, stereo=etiquette]{Tag}{Photo}
       \umlassoc[mult1=1, mult2=0..1, stereo=annotate]{Photo}{Discussion}
       \umlassoc[mult1=0..N, mult2=0..N, stereo=likes]{Utilisateur}{Photo}
-      \umlassoc[mult1=1, pos1=0.1, mult2=0..N, pos2=1.95, geometry=-|, stereo=commente, pos stereo=1.2]{Utilisateur}{Comment}
+      \umlassoc[mult1=1, pos1=0.1, mult2=0..N, pos2=1.6, geometry=-|, stereo=commente, pos stereo=1.2]{Utilisateur}{Comment}
     \end{tikzpicture}
   }
   \caption{Cahier des charges \#3 : les interactions entre utilisateurs}
