@@ -24,11 +24,11 @@ AND lieu LIKE '%FRANCE%';
 
 /*les photos les plus appréciées avec la licence de distribution 'tous droits réservés'*/
 SELECT id_photo, chemin, lieu, count(*) AS likes
-FROM Photo, Aime, Licence
+FROM Photo, Aime, License
 WHERE droits = 'tous droits réservés'
-AND id_licence = licence_id
+AND ID_LICENCE = license_id
 AND id = id_photo
-GROUP BY id_photo
+GROUP BY id_photo,chemin, lieu
 ORDER BY likes DESC;
 
 /*les photos incluses dans le plus grand nombre de galeries*/
