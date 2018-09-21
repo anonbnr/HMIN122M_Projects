@@ -54,8 +54,8 @@ END;
 /
 
 /*
-comment isnt a photos
-/*
+comment isnt a photo
+*/
 CREATE OR REPLACE TRIGGER commentaire_inheritance_trigger
 BEFORE INSERT OR UPDATE ON Commentaire
 FOR EACH ROW
@@ -83,7 +83,7 @@ END;
 /
 
 /*
-Any photo of the album belong to the album's owner
+Any photo of the albums belong to the album's owner
 */
 CREATE OR REPLACE TRIGGER range_album_trigger
 BEFORE INSERT OR UPDATE ON Range_album
