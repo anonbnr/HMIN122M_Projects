@@ -35,5 +35,5 @@ ORDER BY likes DESC;
 SELECT id_photo, chemin, lieu, count(*) AS nb_galleries
 FROM Photo, Range_gallery
 WHERE id = id_photo
-GROUP BY id_photo
+GROUP BY id_photo, chemin, lieu
 ORDER BY nb_galleries DESC;
