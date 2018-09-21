@@ -119,7 +119,7 @@
       \umlclass[x=0, y=4, type=abstract]{ContenuNumerique}{
         \underline{id}: \textsc{integer} \{auto\}
       }{}
-      \umlclass[x=8, y=0]{Comment}{
+      \umlclass[x=8, y=0]{Commentaire}{
         \underline{id}: \textsc{integer} \{auto\} <<FK>>\\
         contenu: \textsc{text}
       }{}
@@ -138,8 +138,8 @@
         contenu: \textsc{varchar}
       }{}
       \umlVHVinherit{Photo}{ContenuNumerique}
-      \umlVHVinherit{Comment}{ContenuNumerique}
-      \umlunicompo{Discussion}{Comment}
+      \umlVHVinherit{Commentaire}{ContenuNumerique}
+      \umlunicompo{Discussion}{Commentaire}
       \umlassoc[name=assoc, mult1=1, pos1=0.1, mult2=0..N, pos2=1, geometry=-|-, stereo=publie]{Utilisateur}{ContenuNumerique}
       \umlassocclass[x=0, y=8, geometry=-|]{Publie}{assoc-1}{
         date\_publication: \textsc{date}\\
@@ -167,7 +167,8 @@
   \item \textbf{Gallery}(\textit{\underline{id}})
   \item \textbf{Photo}(\textit{\underline{id}}, lieu, chemin, nb\_views, \textit{id\_appareil}, \textit{id\_licence}, \textit{id\_configuration})
   \item \textbf{Discussion}(\underline{id}, \textit{id\_photo})
-  \item \textbf{Comment}(\textit{\underline{id}}, contenu, \textit{id\_discussion})
+  \item \textbf{Commentaire}(\textit{\underline{id}}, contenu, \textit{id\_discussion})
+  \item \textbf{Tag}(\textit{\underline{id}}, contenu)
   \item \textbf{range\_gallery}(\textit{\underline{id\_gallery}}, \textit{\underline{id\_utilisateur}}, \textit{\underline{id\_photo}})
   \item \textbf{range\_album}(\textit{\underline{id\_album}}, \textit{\underline{id\_utilisateur}}, \textit{\underline{id\_photo}})\footnote{un \textit{trigger} est requis pour vérifier la contrainte d'intégrité désignant l'unicité du propriétaire des photos dans un album}
   \item \textbf{aime}(\textit{\underline{id\_utilisateur}}, \textit{\underline{id\_photo}})
