@@ -4,6 +4,10 @@
 * @author Joseph SABA
 */
 
+
+/*
+Album is not a gallery
+*/
 CREATE OR REPLACE TRIGGER album_inheritance_trigger
 BEFORE INSERT OR UPDATE ON Album
 FOR EACH ROW
@@ -17,6 +21,9 @@ BEGIN
 END;
 /
 
+/*
+Gallery is not an album
+*/
 CREATE OR REPLACE TRIGGER gallery_inheritance_trigger
 BEFORE INSERT OR UPDATE ON Gallery
 FOR EACH ROW
@@ -30,6 +37,9 @@ BEGIN
 END;
 /
 
+/*
+photo isnt a comment
+*/
 CREATE OR REPLACE TRIGGER photo_inheritance_trigger
 BEFORE INSERT OR UPDATE ON Photo
 FOR EACH ROW
@@ -43,6 +53,9 @@ BEGIN
 END;
 /
 
+/*
+comment isnt a photos
+/*
 CREATE OR REPLACE TRIGGER commentaire_inheritance_trigger
 BEFORE INSERT OR UPDATE ON Commentaire
 FOR EACH ROW
@@ -56,6 +69,9 @@ BEGIN
 END;
 /
 
+/*
+User cant follow their own account
+*/
 CREATE OR REPLACE TRIGGER suit_trigger
 BEFORE INSERT OR UPDATE ON Suit
 FOR EACH ROW
@@ -66,6 +82,9 @@ BEGIN
 END;
 /
 
+/*
+Any photo of the album belong to the album's owner
+*/
 CREATE OR REPLACE TRIGGER range_album_trigger
 BEFORE INSERT OR UPDATE ON Range_album
 FOR EACH ROW
