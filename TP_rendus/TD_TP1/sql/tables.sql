@@ -5,144 +5,186 @@
 */
 
 CREATE TABLE AppareilPhoto (
-  model varchar2(50) not null constraint appareilphoto_pk primary key,
-  type varchar2(50) not null,
-  resolution_x number,
-  lens varchar2(50)
+  model VARCHAR2(50),
+  type VARCHAR2(50) NOT NULL,
+  resolution_x NUMBER,
+  lens VARCHAR2(50),
+  CONSTRAINT PK_APPAREIL_PHOTO
+    PRIMARY KEY(model)
 );
 
-CREATE TABLE License (
-  license_id number not null constraint license_pk primary key,
-  droits varchar2(40) unique not null CHECK (droits in ('tous droits réservés','utilisation commerciale autorisée','modifications de l\’image autorisées'))
+CREATE TABLE Licence (
+  licence_id NUMBER,
+  droits VARCHAR2(40) UNIQUE NOT NULL CHECK (
+    droits in ('tous droits réservés', 'utilisation commerciale autorisée', 'modifications de l''image autorisées')),
+  CONSTRAINT PK_LICENCE
+    PRIMARY KEY(licence_id)
 );
 
 CREATE TABLE Configuration (
-  conf_id number not null constraint configuration_pk primary key,
-  ouverture_focale number,
-  temps_exposition varchar2(10),
-  flash number(1) not null,
-  distance_focale number
+  conf_id NUMBER,
+  ouverture_focale NUMBER,
+  temps_exposition VARCHAR2(10),
+  flash NUMBER(1) NOT NULL,
+  distance_focale NUMBER,
+  CONSTRAINT PK_CONFIGURATION
+    PRIMARY KEY(conf_id)
 );
 
 CREATE TABLE Utilisateur (
-  utilisateur_id varchar2(50) not null constraint utilisateur_pk primary key,
-  nom varchar2(50) not null,
-  prenom varchar2(50) not null,
-  username varchar2(50) not null unique,
-  email varchar2(50) not null unique,
-  date_naissance date,
-  date_inscription date default sysdate not null,
-  pays varchar2(50)
+  utilisateur_id VARCHAR2(50),
+  nom VARCHAR2(50) NOT NULL,
+  prenom VARCHAR2(50) NOT NULL,
+  username VARCHAR2(50) NOT NULL UNIQUE,
+  email VARCHAR2(50) NOT NULL UNIQUE,
+  date_naissance DATE,
+  date_inscription DATE DEFAULT SYSDATE NOT NULL,
+  pays VARCHAR2(50),
+  CONSTRAINT PK_UTILISATEUR
+    PRIMARY KEY(utilisateur_id)
 );
 
-CREATE TABLE ContenuNumerique(
-  contenu_id number primary key,
-  utilisateur_id varchar2(50) NOT NULL,
-  date_publication DATE default sysdate not null,
-  constraint fk_contenunumerique FOREIGN KEY(utilisateur_id) references Utilisateur(UTILISATEUR_ID) ON DELETE CASCADE
+CREATE TABLE ContenuNumerique (
+  contenu_id NUMBER,
+  utilisateur_id VARCHAR2(50) NOT NULL,
+  date_publication DATE DEFAULT SYSDATE NOT NULL,
+  CONSTRAINT PK_CONTENU_NUMERIQUE
+    PRIMARY KEY(contenu_id),
+  CONSTRAINT FK_CONTENU_NUMERIQUE_UTILISATEUR
+    FOREIGN KEY(utilisateur_id) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE
 );
 
 CREATE TABLE PhotoCollection (
-  photo_collection_id number constraint photo_collection_pk primary key,
-  nom varchar2(50) not null,
-  utilisateur_id varchar2(50),
-  date_creation date default sysdate not null,
-  constraint FK_PhotoCollection FOREIGN KEY(utilisateur_id) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE
+  photo_collection_id NUMBER,
+  nom VARCHAR2(50) NOT NULL,
+  utilisateur_id VARCHAR2(50) NOT NULL,
+  date_creation DATE DEFAULT SYSDATE NOT NULL,
+  CONSTRAINT PK_PHOTO_COLLECTION
+    PRIMARY KEY(photo_collection_id),
+  CONSTRAINT FK_PHOTO_COLLECTION
+    FOREIGN KEY(utilisateur_id) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Album (
-  album_id number,
-  constraint pk_album primary key(album_id),
-  constraint fk_album foreign key(album_id) references PhotoCollection(photo_collection_id) ON DELETE CASCADE
+  album_id NUMBER,
+  CONSTRAINT PK_ALBUM
+    PRIMARY KEY(album_id),
+  CONSTRAINT FK_ALBUM_PHOTO_COLLECTION
+    FOREIGN KEY(album_id) REFERENCES PhotoCollection(photo_collection_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Gallery (
-  gallery_id number,
-  constraint pk_gallery primary key(gallery_id),
-  constraint fk_gallery foreign key(gallery_id) references PhotoCollection(photo_collection_id) ON DELETE CASCADE
+  gallery_id NUMBER,
+  CONSTRAINT PK_GALLERY
+    PRIMARY KEY(gallery_id),
+  CONSTRAINT FK_GALLERY_PHOTO_COLLECTION
+    FOREIGN KEY(gallery_id) REFERENCES PhotoCollection(photo_collection_id) ON DELETE CASCADE
 );
 
-CREATE TABLE Photo(
-  id number primary key,
-  lieu varchar2(50) NOT NULL,
-  chemin varchar2(200) NOT NULL,
-  nb_views number,
-  id_appareil varchar2(50),
-  id_licence number NOT NULL,
-  id_configuration number,
-  constraint fk_photoid_fk FOREIGN KEY(id) references ContenuNumerique(CONTENU_ID),
-  constraint fk_appareilid_fk FOREIGN KEY(id_appareil) references APPAREILPHOTO(MODEL),
-  constraint fk_licenseid_fk FOREIGN KEY(id_licence) references LICENSE(LICENSE_ID),
-  constraint fk_configurationid_fk FOREIGN KEY(id_configuration) references CONFIGURATION(CONF_ID)
+CREATE TABLE Photo (
+  photo_id NUMBER,
+  lieu VARCHAR2(50) NOT NULL,
+  chemin VARCHAR2(200) NOT NULL,
+  nb_views NUMBER DEFAULT 0,
+  model_appareil VARCHAR2(50),
+  licence_id NUMBER,
+  conf_id NUMBER,
+  CONSTRAINT PK_PHOTO
+    PRIMARY KEY(photo_id),
+  CONSTRAINT FK_PHOTO_CONTENU_NUMERIQUE
+    FOREIGN KEY(photo_id) REFERENCES ContenuNumerique(contenu_id) ON DELETE CASCADE,
+  CONSTRAINT FK_PHOTO_APPAREIL_PHOTO
+    FOREIGN KEY(model_appareil) REFERENCES AppareilPhoto(model) ON DELETE SET NULL,
+  CONSTRAINT FK_PHOTO_LICENCE
+    FOREIGN KEY(licence_id) REFERENCES Licence(licence_id) ON DELETE SET NULL,
+  CONSTRAINT FK_PHOTO_CONFIGURATION
+    FOREIGN KEY(conf_id) REFERENCES Configuration(conf_id) ON DELETE SET NULL
 );
 
-CREATE TABLE Discussion(
-  id number primary key,
-  id_photo number not null,
-  constraint discussionphoto_fk FOREIGN KEY(id_photo) REFERENCES Photo(id)
+CREATE TABLE Discussion (
+  discussion_id NUMBER,
+  photo_id NUMBER NOT NULL,
+  CONSTRAINT PK_DISCUSSION
+    PRIMARY KEY(discussion_id),
+  CONSTRAINT FK_DISCUSSION_PHOTO
+    FOREIGN KEY(photo_id) REFERENCES Photo(photo_id) ON DELETE CASCADE
 );
 
-CREATE TABLE Commentaire(
-id number primary key,
-contenu varchar2(500),
-id_discussion number NOT NULL,
-constraint commentairdiscussion_fk FOREIGN KEY(id_discussion) REFERENCES Discussion(id)
+CREATE TABLE Commentaire (
+  comment_id NUMBER,
+  contenu VARCHAR2(500),
+  discussion_id NUMBER NOT NULL,
+  CONSTRAINT PK_COMMENTAIRE
+    PRIMARY KEY(comment_id),
+  CONSTRAINT FK_COMMENTAIRE_DISCUSSION
+    FOREIGN KEY(discussion_id) REFERENCES Discussion(discussion_id) ON DELETE CASCADE
 );
 
-CREATE TABLE Aime(
-id_utilisateur varchar(50),
-id_photo number,
-constraint aime_pk primary key (id_utilisateur,id_photo),
-constraint idutilisateur_fk FOREIGN KEY(id_utilisateur) REFERENCES Utilisateur(UTILISATEUR_ID),
-constraint idphoto_fk FOREIGN KEY(id_photo) REFERENCES Photo(ID)
+CREATE TABLE Aime (
+  utilisateur_id varchar(50),
+  photo_id NUMBER,
+  CONSTRAINT PK_AIME
+    PRIMARY KEY (utilisateur_id, photo_id),
+  CONSTRAINT FK_AIME_UTILISATEUR
+    FOREIGN KEY(utilisateur_id) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE,
+  CONSTRAINT FK_AIME_PHOTO
+    FOREIGN KEY(photo_id) REFERENCES Photo(photo_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Tag (
-  tag_id number not null constraint tag_pk primary key,
-  contenu varchar2(50) not null
+  tag_id NUMBER,
+  contenu VARCHAR2(50) NOT NULL,
+  CONSTRAINT PK_TAG
+    PRIMARY KEY(tag_id)
 );
 
-CREATE TABLE Range_gallery(
-  id_gallery number,
-  id_utilisateur varchar2(50),
-  id_photo number,
+CREATE TABLE Range_gallery (
+  gallery_id NUMBER,
+  utilisateur_id VARCHAR2(50),
+  photo_id NUMBER,
   CONSTRAINT PK_RANGE_GALLERY
-    PRIMARY KEY(id_gallery, id_utilisateur, id_photo),
+    PRIMARY KEY(gallery_id, utilisateur_id, photo_id),
   CONSTRAINT FK_RANGE_GALLERY_GALLERY
-    FOREIGN KEY(id_gallery) REFERENCES Gallery(gallery_id) ON DELETE CASCADE,
+    FOREIGN KEY(gallery_id) REFERENCES Gallery(gallery_id) ON DELETE CASCADE,
   CONSTRAINT FK_RANGE_GALLERY_UTILISATEUR
-    FOREIGN KEY(id_utilisateur) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE,
+    FOREIGN KEY(utilisateur_id) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE,
   CONSTRAINT FK_RANGE_GALLERY_PHOTO
-    FOREIGN KEY(id_photo) REFERENCES Photo(id) ON DELETE CASCADE
+    FOREIGN KEY(photo_id) REFERENCES Photo(photo_id) ON DELETE CASCADE
 );
 
-CREATE TABLE Range_album(
-  id_album number,
-  id_utilisateur varchar2(50),
-  id_photo number,
+CREATE TABLE Range_album (
+  album_id NUMBER,
+  utilisateur_id VARCHAR2(50),
+  photo_id NUMBER,
   CONSTRAINT PK_RANGE_ALBUM
-    PRIMARY KEY(id_album, id_utilisateur, id_photo),
+    PRIMARY KEY(album_id, utilisateur_id, photo_id),
   CONSTRAINT FK_RANGE_ALBUM_ALBUM
-    FOREIGN KEY(id_album) REFERENCES Album(album_id) ON DELETE CASCADE,
+    FOREIGN KEY(album_id) REFERENCES Album(album_id) ON DELETE CASCADE,
   CONSTRAINT FK_RANGE_ALBUM_UTILISATEUR
-    FOREIGN KEY(id_utilisateur) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE,
+    FOREIGN KEY(utilisateur_id) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE,
   CONSTRAINT FK_RANGE_ALBUM_PHOTO
-    FOREIGN KEY(id_photo) REFERENCES Photo(id) ON DELETE CASCADE
+    FOREIGN KEY(photo_id) REFERENCES Photo(photo_id) ON DELETE CASCADE
 );
 
-CREATE TABLE Suit(
-  id_utilisateur1 varchar2(50),
-  id_utilisateur2 varchar2(50),
-  constraint suitPK primary key (id_utilisateur1,id_utilisateur2),
-  constraint fk_suit1 FOREIGN KEY(id_utilisateur1) references Utilisateur(UTILISATEUR_ID) ON DELETE CASCADE,
-  constraint fk_suit2 FOREIGN KEY(id_utilisateur2) references Utilisateur(UTILISATEUR_ID) ON DELETE CASCADE
+CREATE TABLE Suit (
+  utilisateur_id1 VARCHAR2(50),
+  utilisateur_id2 VARCHAR2(50),
+  CONSTRAINT PK_SUIT
+    PRIMARY KEY(utilisateur_id1, utilisateur_id2),
+  CONSTRAINT FK_SUIT_UTILISATEUR1
+    FOREIGN KEY(utilisateur_id1) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE,
+  CONSTRAINT FK_SUIT_UTILISATEUR2
+    FOREIGN KEY(utilisateur_id2) REFERENCES Utilisateur(utilisateur_id) ON DELETE CASCADE
 );
 
-CREATE TABLE Marque(
-  id_tag number,
-  id_photo number,
-  constraint marquePK primary key (id_tag, id_photo),
-  constraint fk_marque1 FOREIGN KEY(id_tag) references Tag(tag_id) ON DELETE CASCADE,
-  constraint fk_marque2 FOREIGN KEY(id_photo) references Photo(id) ON DELETE CASCADE
+CREATE TABLE Marque (
+  tag_id NUMBER,
+  photo_id NUMBER,
+  CONSTRAINT PK_MARQUE
+    PRIMARY KEY(tag_id, photo_id),
+  CONSTRAINT FK_MARQUE_TAG
+    FOREIGN KEY(tag_id) REFERENCES Tag(tag_id) ON DELETE CASCADE,
+  CONSTRAINT FK_MARQUE_PHOTO
+    FOREIGN KEY(photo_id) REFERENCES Photo(photo_id) ON DELETE CASCADE
 );
 /

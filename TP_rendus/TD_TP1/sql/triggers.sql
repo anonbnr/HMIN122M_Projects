@@ -4,7 +4,6 @@
 * @author Joseph SABA
 */
 
-
 /*
 Album is not a gallery
 */
@@ -38,52 +37,52 @@ END;
 /
 
 /*
-photo isnt a comment
+photo is not a comment
 */
 CREATE OR REPLACE TRIGGER photo_inheritance_trigger
 BEFORE INSERT OR UPDATE ON Photo
 FOR EACH ROW
 BEGIN
-  for comment in (SELECT id
+  for comment in (SELECT comment_id
   FROM Commentaire) loop
-    if :new.id = comment.id THEN
-      RAISE_APPLICATION_ERROR(-20507, 'photo_id is already used as a commentaire_id');
+    if :new.photo_id = comment.comment_id THEN
+      RAISE_APPLICATION_ERROR(-20507, 'photo_id is already used as a comment_id');
     END IF;
   END loop;
 END;
 /
 
 /*
-comment isnt a photo
+comment is not a photo
 */
 CREATE OR REPLACE TRIGGER commentaire_inheritance_trigger
 BEFORE INSERT OR UPDATE ON Commentaire
 FOR EACH ROW
 BEGIN
-  for photo in (SELECT id
+  for photo in (SELECT photo_id
   FROM Photo) loop
-    if :new.id = photo.id THEN
-      RAISE_APPLICATION_ERROR(-20508, 'commentaire_id is already used as a photo_id');
+    if :new.comment_id = photo.photo_id THEN
+      RAISE_APPLICATION_ERROR(-20508, 'comment_id is already used as a photo_id');
     END IF;
   END loop;
 END;
 /
 
 /*
-User cant follow their own account
+Users can't follow their own account
 */
 CREATE OR REPLACE TRIGGER suit_trigger
 BEFORE INSERT OR UPDATE ON Suit
 FOR EACH ROW
 BEGIN
-  IF :new.id_utilisateur1 = :new.id_utilisateur2 THEN
+  IF :new.utilisateur_id1 = :new.utilisateur_id2 THEN
     RAISE_APPLICATION_ERROR(-20509, 'users must have different ids: a user cannot follow the publications of himself');
   END IF;
 END;
 /
 
 /*
-Any photo of the albums belong to the album's owner
+Any photo of an album must belong to the album's owner
 */
 CREATE OR REPLACE TRIGGER range_album_trigger
 BEFORE INSERT OR UPDATE ON Range_album
@@ -93,9 +92,9 @@ DECLARE
 BEGIN
   SELECT utilisateur_id INTO owner_id
   FROM ContenuNumerique
-  WHERE contenu_id = :new.id_photo;
-  IF :new.id_utilisateur <> owner_id THEN
-    RAISE_APPLICATION_ERROR(-20510, 'the owner of the album is not the owner of the photo with id_photo');
+  WHERE contenu_id = :new.photo_id;
+  IF :new.utilisateur_id <> owner_id THEN
+    RAISE_APPLICATION_ERROR(-20510, 'the owner of the album is not the owner of the photo having photo_id');
   END IF;
 END;
 /
