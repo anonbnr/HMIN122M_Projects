@@ -399,11 +399,11 @@ select plan_table_output from table(dbms_xplan.display());
 
 -- QUESTION 9
 create index idx_dep_ville on ville(dep);
---1st query (QUESTION 2) //attribute departement from table ville not used in query
+--1st query (QUESTION 2) //attribut departement from table ville not used in query
 
---2nd query (QUESTION 4) //attribute departement from table ville not used in query
+--2nd query (QUESTION 4) //attribut departement from table ville not used in query
 
---3rd query (QUESTION 5) //attribute departement from table ville not used in query
+--3rd query (QUESTION 5) //attribut departement from table ville not used in query
 
 --4th query (QUESTION 6)
 explain plan for select departement.nom from departement, ville where departement.id = ville.dep;
@@ -464,7 +464,7 @@ select plan_table_output from table(dbms_xplan.display());
 -- 	 19  rows processed
 --
 
---5th query
+--5th query (Question 7)
 explain plan for select ville.nom, departement.nom from ville, departement where departement.id='91' and ville.dep=departement.id;
 select plan_table_output from table(dbms_xplan.display());
 
