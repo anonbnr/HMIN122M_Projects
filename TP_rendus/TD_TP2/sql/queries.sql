@@ -10,7 +10,7 @@ set autotrace on
 SET LINESIZE 200
 
 --QUESTION 2
-/*expliciter le plan d'exécution choisir par l'optimiseur en utilisant l'option d'autotrace pour visualiser des statistiques sur les opérations effectués pour la requête*/
+/*expliciter le plan d'exécution choisi par l'optimiseur en utilisant l'option d'autotrace pour visualiser des statistiques sur les opérations effectués pour la requête*/
 explain plan for select nom from ville where insee='34172';
 select plan_table_output from table(dbms_xplan.display()); --afficher le résultat d'explicitation du plan d'exécution choisi par l'optimiseur pour la requête
 
@@ -118,58 +118,45 @@ select plan_table_output from table(dbms_xplan.display());
 explain plan for select departement.nom from departement, ville where insee='34172' and departement.id = ville.dep;
 select plan_table_output from table(dbms_xplan.display());
 
--- PLAN_TABLE_OUTPUT
--- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- Plan hash value: 1182727008
---
--- ----------------------------------------------------------------------------------------------
--- | Id  | Operation		     | Name	     | Rows  | Bytes | Cost (%CPU)| Time     |
--- ----------------------------------------------------------------------------------------------
--- |   0 | SELECT STATEMENT	     |		     |	   1 |	  39 |	   3   (0)| 00:00:01 |
--- |   1 |  NESTED LOOPS		     |		     |	   1 |	  39 |	   3   (0)| 00:00:01 |
--- |   2 |   TABLE ACCESS BY INDEX ROWID| VILLE	     |	   1 |	   8 |	   2   (0)| 00:00:01 |
--- |*  3 |    INDEX UNIQUE SCAN	     | PK_VILLE      |	   1 |	     |	   1   (0)| 00:00:01 |
--- |   4 |   TABLE ACCESS BY INDEX ROWID| DEPARTEMENT   |	  82 |	2542 |	   1   (0)| 00:00:01 |
--- |*  5 |    INDEX UNIQUE SCAN	     | SYS_C00388842 |	   1 |	     |	   0   (0)| 00:00:01 |
---
--- PLAN_TABLE_OUTPUT
--- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- ----------------------------------------------------------------------------------------------
---
--- Predicate Information (identified by operation id):
--- ---------------------------------------------------
---
---    3 - access("INSEE"='34172')
---    5 - access("DEPARTEMENT"."ID"="VILLE"."DEP")
---
--- 18 rows selected.
---
---
--- Execution Plan
--- ----------------------------------------------------------
--- Plan hash value: 2137789089
---
--- ---------------------------------------------------------------------------------------------
--- | Id  | Operation			  | Name    | Rows  | Bytes | Cost (%CPU)| Time     |
--- ---------------------------------------------------------------------------------------------
--- |   0 | SELECT STATEMENT		  |	    |  8168 | 16336 |	 29   (0)| 00:00:01 |
--- |   1 |  COLLECTION ITERATOR PICKLER FETCH| DISPLAY |  8168 | 16336 |	 29   (0)| 00:00:01 |
--- ---------------------------------------------------------------------------------------------
---
---
--- Statistics
--- ----------------------------------------------------------
--- 	 17  recursive calls
--- 	 12  db block gets
--- 	 50  consistent gets
--- 	  0  physical reads
--- 	  0  redo size
---        2008 bytes sent via SQL*Net to client
--- 	511  bytes received via SQL*Net from client
--- 	  3  SQL*Net roundtrips to/from client
--- 	  1  sorts (memory)
--- 	  0  sorts (disk)
--- 	 18  rows processed
+PLAN_TABLE_OUTPUT
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 1182727008
+
+----------------------------------------------------------------------------------------------
+| Id  | Operation		     | Name	     | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT	     |		     |	   1 |	  39 |	   3   (0)| 00:00:01 |
+|   1 |  NESTED LOOPS		     |		     |	   1 |	  39 |	   3   (0)| 00:00:01 |
+|   2 |   TABLE ACCESS BY INDEX ROWID| VILLE	     |	   1 |	   8 |	   2   (0)| 00:00:01 |
+|*  3 |    INDEX UNIQUE SCAN	     | PK_VILLE      |	   1 |	     |	   1   (0)| 00:00:01 |
+|   4 |   TABLE ACCESS BY INDEX ROWID| DEPARTEMENT   |	  82 |	2542 |	   1   (0)| 00:00:01 |
+|*  5 |    INDEX UNIQUE SCAN	     | SYS_C00388842 |	   1 |	     |	   0   (0)| 00:00:01 |
+
+PLAN_TABLE_OUTPUT
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - access("INSEE"='34172')
+   5 - access("DEPARTEMENT"."ID"="VILLE"."DEP")
+
+18 rows selected.
+
+Statistics
+----------------------------------------------------------
+	 17  recursive calls
+	 12  db block gets
+	 50  consistent gets
+	  0  physical reads
+	  0  redo size
+       2008 bytes sent via SQL*Net to client
+	511  bytes received via SQL*Net from client
+	  3  SQL*Net roundtrips to/from client
+	  1  sorts (memory)
+	  0  sorts (disk)
+	 18  rows processed
 
 -- QUESTION 6
 explain plan for select departement.nom from departement, ville where departement.id = ville.dep;
@@ -232,34 +219,34 @@ select plan_table_output from table(dbms_xplan.display());
 explain plan for select ville.nom, departement.nom from ville, departement where departement.id='91' and ville.dep=departement.id;
 select plan_table_output from table(dbms_xplan.display());
 
--- PLAN_TABLE_OUTPUT
--- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- Plan hash value: 3197113083
---
--- ----------------------------------------------------------------------------------------------
--- | Id  | Operation		     | Name	     | Rows  | Bytes | Cost (%CPU)| Time     |
--- ----------------------------------------------------------------------------------------------
--- |   0 | SELECT STATEMENT	     |		     |	 759 | 66033 |	  69   (0)| 00:00:01 |
--- |   1 |  NESTED LOOPS		     |		     |	 759 | 66033 |	  69   (0)| 00:00:01 |
--- |   2 |   TABLE ACCESS BY INDEX ROWID| DEPARTEMENT   |	   1 |	  31 |	   1   (0)| 00:00:01 |
--- |*  3 |    INDEX UNIQUE SCAN	     | SYS_C00388842 |	   1 |	     |	   1   (0)| 00:00:01 |
--- |*  4 |   TABLE ACCESS FULL	     | VILLE	     |	 759 | 42504 |	  68   (0)| 00:00:01 |
--- ----------------------------------------------------------------------------------------------
---
--- PLAN_TABLE_OUTPUT
--- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---
--- Predicate Information (identified by operation id):
--- ---------------------------------------------------
---
---    3 - access("DEPARTEMENT"."ID"='91')
---    4 - filter("VILLE"."DEP"='91')
---
--- Note
--- -----
---    - dynamic sampling used for this statement (level=2)
---
--- 21 rows selected.
+PLAN_TABLE_OUTPUT
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 3197113083
+
+----------------------------------------------------------------------------------------------
+| Id  | Operation		     | Name	     | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT	     |		     |	 759 | 66033 |	  69   (0)| 00:00:01 |
+|   1 |  NESTED LOOPS		     |		     |	 759 | 66033 |	  69   (0)| 00:00:01 |
+|   2 |   TABLE ACCESS BY INDEX ROWID| DEPARTEMENT   |	   1 |	  31 |	   1   (0)| 00:00:01 |
+|*  3 |    INDEX UNIQUE SCAN	     | SYS_C00388842 |	   1 |	     |	   1   (0)| 00:00:01 |
+|*  4 |   TABLE ACCESS FULL	     | VILLE	     |	 759 | 42504 |	  68   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------
+
+PLAN_TABLE_OUTPUT
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - access("DEPARTEMENT"."ID"='91')
+   4 - filter("VILLE"."DEP"='91')
+
+Note
+-----
+   - dynamic sampling used for this statement (level=2)
+
+21 rows selected.
 --
 --
 -- Execution Plan
@@ -273,20 +260,20 @@ select plan_table_output from table(dbms_xplan.display());
 -- |   1 |  COLLECTION ITERATOR PICKLER FETCH| DISPLAY |  8168 | 16336 |	 29   (0)| 00:00:01 |
 -- ---------------------------------------------------------------------------------------------
 --
---
--- Statistics
--- ----------------------------------------------------------
--- 	 20  recursive calls
--- 	 12  db block gets
--- 	 54  consistent gets
--- 	  0  physical reads
--- 	  0  redo size
---        1979  bytes sent via SQL*Net to client
--- 	511  bytes received via SQL*Net from client
--- 	  3  SQL*Net roundtrips to/from client
--- 	  1  sorts (memory)
--- 	  0  sorts (disk)
--- 	 21  rows processed
+
+Statistics
+----------------------------------------------------------
+	 20  recursive calls
+	 12  db block gets
+	 54  consistent gets
+	  0  physical reads
+	  0  redo size
+       1979  bytes sent via SQL*Net to client
+	511  bytes received via SQL*Net from client
+	  3  SQL*Net roundtrips to/from client
+	  1  sorts (memory)
+	  0  sorts (disk)
+	 21  rows processed
 
 explain plan for select departement.nom from departement where departement.id='92';
 select plan_table_output from table(dbms_xplan.display());
