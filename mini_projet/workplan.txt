@@ -1,0 +1,11 @@
+1. problématique
+2. brainstorming (collection of data)
+3. analyse et modélisation (organisation et représentation of data) :
+	3.1- action (fait primordial)
+		3.1.1- dimensions
+	3.2- action (fait secondaire)
+		3.2.1- dimensions
+4. LDD
+5. LMD
+6. rapport
+7. présentation
