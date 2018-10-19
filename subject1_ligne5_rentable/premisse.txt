@@ -1,74 +1,77 @@
-Proposition de problématique 1 : La ligne 5 sera-t-elle rentable ?
+Objectif : Baisser les coÃ»ts des diffÃ©rentes lignes.
+Objectif 2 : AmÃ©liorer la qualitÃ© de service.
 
-Pour répondre à la problématique, on va se poser une série de question (ce qui revient à répondre à notre problématique en la décomposant en une série de sous-problématique).
-Chaque réponse à une question (ou sous-problématique) entrainera la question qui suit jusqu'à ce que l'on puisse apporter la solution à la problématique principale.
-Ce document est en quelque sorte l'introduction de notre rapport si on choisit cette problématique.
+Proposition de problÃ©matique 1 : La ligne 5 sera-t-elle moins couteuse ?
+
+Pour rÃ©pondre Ã  la problÃ©matique, on va se poser une sÃ©rie de question (ce qui revient Ã  rÃ©pondre Ã  notre problÃ©matique en la dÃ©composant en une sÃ©rie de sous-problÃ©matique).
+Chaque rÃ©ponse Ã  une question (ou sous-problÃ©matique) entrainera la question qui suit jusqu'Ã  ce que l'on puisse apporter la solution Ã  la problÃ©matique principale.
+Ce document est en quelque sorte l'introduction de notre rapport si on choisit cette problÃ©matique.
 
 Question 1 :
-Comment peut-on évaluer combien rapporte une ligne de tram/bus à la TAM ?
-Lorsque l'on emprunt les transports en commun à Montpellier (réseau TAM uniquement), on paye un ticket (ou un abonnement tous les mois) permettant de pouvoir effectuer un trajet dans sa globalité.
-Par conséquent, on pourrait recencer chaque voyageur qui monte dans une ligne avec le ticket utilisé (du coup la somme qu'il a dépensé pour le trajet) chaque jour.
+Comment peut-on Ã©valuer combien rapporte une ligne de tram/bus Ã  la TAM ?
+Lorsque l'on emprunt les transports en commun Ã  Montpellier (rÃ©seau TAM uniquement), on paye un ticket (ou un abonnement tous les mois) permettant de pouvoir effectuer un trajet dans sa globalitÃ©.
+Par consÃ©quent, on pourrait recencer chaque voyageur qui monte dans une ligne avec le ticket utilisÃ© (du coup la somme qu'il a dÃ©pensÃ© pour le trajet) chaque jour.
 Ainsi, on pourra avoir l'apport journalier de chaque ligne.
 
 Question 2 :
 La ligne 5 n'est pas encore en place, comment peut-on recencer les voyageur qui l'emprunteront ?
-Pour cela, il faut faire une étude de marché. 
-(la suite des questions/sous-problématiques va permettre d'établir notre étude de marché)
+Pour cela, il faut faire une Ã©tude de marchÃ©. 
+(la suite des questions/sous-problÃ©matiques va permettre d'Ã©tablir notre Ã©tude de marchÃ©)
 
 Question 3 :
 Puisqu'il s'agit principalement de savoir QUI seront les voyageur qui emprunteront la ligne 5, quel est le public cible pour ce projet ?
-Tous le monde à besoin de se déplacer, que ce soit pour aller : travailler, collège/lycée/université, activités/loisir et autre déplacement d'utilité.
-Donc, bien qu'il y a principalement des étudiants et des personnes agées qui emprunte les transports en commun, on ne peut pas négliger ceux qui les utilises pour partir travailler.
-Par conséquent, notre public cible va se trouver dans les principales zones géographiques de Montpellier qui seront touché par la ligne 5 où il n'y a pas de tram qui passe à proximité.
-On remarque qu'il y a Lavérune, le quartier Val de Croze, le quartier Paul-Valéry, le quartier Pas du Loup, le quartier Ovalie, le quartier Cité Gély, le quartier Estanove, le quartier hopitaux/faculté, et la commune de Clapier.
+Tous le monde Ã  besoin de se dÃ©placer, que ce soit pour aller : travailler, collÃ¨ge/lycÃ©e/universitÃ©, activitÃ©s/loisir et autre dÃ©placement d'utilitÃ©.
+Donc, bien qu'il y a principalement des Ã©tudiants et des personnes agÃ©es qui emprunte les transports en commun, on ne peut pas nÃ©gliger ceux qui les utilises pour partir travailler.
+Par consÃ©quent, notre public cible va se trouver dans les principales zones gÃ©ographiques de Montpellier qui seront touchÃ© par la ligne 5 oÃ¹ il n'y a pas de tram qui passe Ã  proximitÃ©.
+On remarque qu'il y a LavÃ©rune, le quartier Val de Croze, le quartier Paul-ValÃ©ry, le quartier Pas du Loup, le quartier Ovalie, le quartier CitÃ© GÃ©ly, le quartier Estanove, le quartier hopitaux/facultÃ©, et la commune de Clapier.
 (voir carte projet initiale ligne 5 et https://www.20minutes.fr/montpellier/2037959-20170327-montpellier-travaux-ligne-5-tramway-debuteront-avant-2020)
 
 Question 4 :
-Quel est l'impact sur le réseau lors de la création d'une ligne de tram ?
-L'exemple le plus frappant est l'arrivée de la ligne 3. Lorsque celle-ci a vu le jour, cela a été un évènement très important pour la ville qui a vu son réseau de bus changé.
-On a pu voir que la ligne 15 (cette ligne été très importante car c'est elle qui avait la fréqeunce de passage la plus élevée) a été totalement supprimé.
-En effet, la ligne 3 emprunte en grande partie le tracé de la ligne 15, et la ligne 1 emprunte la partie manquante. Par conséquent, cette ligne de bus n'avait plus de raison d'être (inutile que 2 lignes distincte emprunte le même trajet).
-On a pu aussi noté qu'une autre ligne de bus a été supprimé, elle permettait de relier place de l'europe et Pérols, là aussi il était inutile d'avoir un tram et un bus qui emmène les personnes au même endroit.
-Par conséquent, on remarque qu'à l'apparition d'une nouvelle ligne de tram, cela a un impact sur le réseau de bus : des lignes peuvent être modifié, tronqué, voir complètement supprimé par soucis de cohérence.
+Quel est l'impact sur le rÃ©seau lors de la crÃ©ation d'une ligne de tram ?
+L'exemple le plus frappant est l'arrivÃ©e de la ligne 3. Lorsque celle-ci a vu le jour, cela a Ã©tÃ© un Ã©vÃ¨nement trÃ¨s important pour la ville qui a vu son rÃ©seau de bus changÃ©.
+On a pu voir que la ligne 15 (cette ligne Ã©tÃ© trÃ¨s importante car c'est elle qui avait la frÃ©qeunce de passage la plus Ã©levÃ©e) a Ã©tÃ© totalement supprimÃ©.
+En effet, la ligne 3 emprunte en grande partie le tracÃ© de la ligne 15, et la ligne 1 emprunte la partie manquante. Par consÃ©quent, cette ligne de bus n'avait plus de raison d'Ãªtre (inutile que 2 lignes distincte emprunte le mÃªme trajet).
+On a pu aussi notÃ© qu'une autre ligne de bus a Ã©tÃ© supprimÃ©, elle permettait de relier place de l'europe et PÃ©rols, lÃ  aussi il Ã©tait inutile d'avoir un tram et un bus qui emmÃ¨ne les personnes au mÃªme endroit.
+Par consÃ©quent, on remarque qu'Ã  l'apparition d'une nouvelle ligne de tram, cela a un impact sur le rÃ©seau de bus : des lignes peuvent Ãªtre modifiÃ©, tronquÃ©, voir complÃ¨tement supprimÃ© par soucis de cohÃ©rence.
 
 Question 5 :
-Quel est l'impact sur le public dans les zones concerné par la supression des bus ?
-Puisque le tram dessert aussi bien voir mieux la destination voulu (dans certaines situation lors de la création d'une ligne de tram, cela peut réduire le nombre de correspondance nécessaire).
-Par conséquent, les usagers prenne la nouvelle ligne de tram à la place de leur ancienne ligne de bus.
+Quel est l'impact sur le public dans les zones concernÃ© par la supression des bus ?
+Puisque le tram dessert aussi bien voir mieux la destination voulu (dans certaines situation lors de la crÃ©ation d'une ligne de tram, cela peut rÃ©duire le nombre de correspondance nÃ©cessaire).
+Par consÃ©quent, les usagers prenne la nouvelle ligne de tram Ã  la place de leur ancienne ligne de bus.
 
 Question 6 :
-Est ce qu'il y a des lignes de bus qui vont être supprimé/tronqué/modifié lors de la création de la ligne 5 ?
+Est ce qu'il y a des lignes de bus qui vont Ãªtre supprimÃ©/tronquÃ©/modifiÃ© lors de la crÃ©ation de la ligne 5 ?
 https://tam.cartographie.pro/
-- La ligne 6 sera supprimé entre pas du loup et la gare saint roch, voir totalement : Pas du Loup, lycée Clémenceau
-- La ligne 7 sera supprimé entre les bouisses/la martelle et la gare saint roch. Elle continuera d'aller jusqu'à Hotel du département : Val de Croze, Paul-Valéry, Estanove, lycée Clémenceau
-- La ligne 11 sera supprimé entre les bouisses et la gare saint roch (continuera son trajet entre gare saint roch et tournezy) : Val de Croze, Paul-Valéry, Pas du Loup, Estanove, Cité Gély
-- La ronde : difficile de déterminer si elle sera supprimé, modifié ou tronqué au vu de son trajet atypique. Cependant, les personnes dans les zones suivantes n'auront plus aucun intérêt à utiliser cette ligne : Val de Croze, Ovalie
-- la ligne 22 : sera supprimé entre Clapier et Saint-Eloi (ne sera pas supprimé entre Clapier et Jacou, car cela permet de desservir le Lycée de secteur George Pompidou se situant à Jacou) : Clapier, hopitaux/faculté
-- La ligne 23 : sera supprimé entre Clapier et Occitanie : Clapier
-- La ligne 38 : sera supprimé entre Lavérune et Saint-Denis. Elle pemettra simplement de relier Cournonsec, Cournonterral, Pignan et Lavérune : Lavérune, lycée Clémenceau : Lavérune
-Par conséquent toute les personnes se situant dans les zones concernées prendront la ligne 5 à la place de leurs bus respectif.
+- La ligne 6 sera supprimÃ© entre pas du loup et la gare saint roch, voir totalement : Pas du Loup, lycÃ©e ClÃ©menceau
+- La ligne 7 sera supprimÃ© entre les bouisses/la martelle et la gare saint roch. Elle continuera d'aller jusqu'Ã  Hotel du dÃ©partement : Val de Croze, Paul-ValÃ©ry, Estanove, lycÃ©e ClÃ©menceau
+- La ligne 11 sera supprimÃ© entre les bouisses et la gare saint roch (continuera son trajet entre gare saint roch et tournezy) : Val de Croze, Paul-ValÃ©ry, Pas du Loup, Estanove, CitÃ© GÃ©ly
+- La ronde : difficile de dÃ©terminer si elle sera supprimÃ©, modifiÃ© ou tronquÃ© au vu de son trajet atypique. Cependant, les personnes dans les zones suivantes n'auront plus aucun intÃ©rÃªt Ã  utiliser cette ligne : Val de Croze, Ovalie
+- la ligne 22 : sera supprimÃ© entre Clapier et Saint-Eloi (ne sera pas supprimÃ© entre Clapier et Jacou, car cela permet de desservir le LycÃ©e de secteur George Pompidou se situant Ã  Jacou) : Clapier, hopitaux/facultÃ©
+- La ligne 23 : sera supprimÃ© entre Clapier et Occitanie : Clapier
+- La ligne 38 : sera supprimÃ© entre LavÃ©rune et Saint-Denis. Elle pemettra simplement de relier Cournonsec, Cournonterral, Pignan et LavÃ©rune : LavÃ©rune, lycÃ©e ClÃ©menceau : LavÃ©rune
+Par consÃ©quent toute les personnes se situant dans les zones concernÃ©es prendront la ligne 5 Ã  la place de leurs bus respectif.
 
 Question 7 :
-Comment évaluer combien va rapporter notre cible principale ?
-Après avoir fait plusieurs recherches et répondu à différentes problématique, on peut maintenant trouver une méthodologie permettant de répondre à la principale problématique.
-Nous avons notre principale public cible, et nous savons comment ils vont se comporter lors de l'arrivée de la ligne 5.
-Sachant, que tout usager utilisant les lignes de bus cité plus haut dans des zones bien définies, vont utiliser la ligne 5 à la place, on peut faire la simulation suivante :
-A chaque fois qu'une personne emprunte une ligne bus (parmit celle que l'on a cité au-dessus), si il se trouve dans une zone qui concerne la ligne 5 (donc qui entrainera la supression du bus en question sur cette zone), alors on l'enregistrera. 
-Chaque enregistrement permettra de pouvoir évaluer combien chaque bus dans sa zone respective a rapporté par jour (ainsi que l'ensemble des bus dans les zones en question).
-On va aussi considérer que chaque enregistrement simulera une personne qui emprunte la ligne 5. Ainsi, on pourra savoir le nombre de passager qui emprunteront la ligne 5 et combien elle va rapporter chaque jour.
-Cette simulation peut bien fonctionner car le nombre d'usager journalier des transports en commun n'est pas aléatoire. En effet, ce sont pour la grande majorité des utilisateurs régulier. Sachant les utilisateurs qui voient leur ligne de bus supprimé utilisent le tram à la place.
-Par conséquent, on va pouvoir évaluer si le système de tram sera plus rentable que le système de bus, et donc savoir si en plus l'apport qualitatif pour les voyageurs utilisant les bus dans les zones en question, la ligne 5 sera économiquement intéressante.
+Comment Ã©valuer combien va rapporter notre cible principale ?
+AprÃ¨s avoir fait plusieurs recherches et rÃ©pondu Ã  diffÃ©rentes problÃ©matique, on peut maintenant trouver une mÃ©thodologie permettant de rÃ©pondre Ã  la principale problÃ©matique.
+Nous avons notre principale public cible, et nous savons comment ils vont se comporter lors de l'arrivÃ©e de la ligne 5.
+Sachant, que tout usager utilisant les lignes de bus citÃ© plus haut dans des zones bien dÃ©finies, vont utiliser la ligne 5 Ã  la place, on peut faire la simulation suivante :
+A chaque fois qu'une personne emprunte une ligne bus (parmit celle que l'on a citÃ© au-dessus), si il se trouve dans une zone qui concerne la ligne 5 (donc qui entrainera la supression du bus en question sur cette zone), alors on l'enregistrera. 
+Chaque enregistrement permettra de pouvoir Ã©valuer combien chaque bus dans sa zone respective a rapportÃ© par jour (ainsi que l'ensemble des bus dans les zones en question).
+On va aussi considÃ©rer que chaque enregistrement simulera une personne qui emprunte la ligne 5. Ainsi, on pourra savoir le nombre de passager qui emprunteront la ligne 5 et combien elle va rapporter chaque jour.
+Cette simulation peut bien fonctionner car le nombre d'usager journalier des transports en commun n'est pas alÃ©atoire. En effet, ce sont pour la grande majoritÃ© des utilisateurs rÃ©gulier. Sachant les utilisateurs qui voient leur ligne de bus supprimÃ© utilisent le tram Ã  la place.
+Par consÃ©quent, on va pouvoir Ã©valuer si le systÃ¨me de tram sera plus rentable que le systÃ¨me de bus, et donc savoir si en plus l'apport qualitatif pour les voyageurs utilisant les bus dans les zones en question, la ligne 5 sera Ã©conomiquement intÃ©ressante.
 
 Question 8 :
-Quel système utiliser ?
-La première chose que l'on peut remarquer, c'est que l'on a des données "statiques" :
-- chaque zone est déjà défini avec la ligne de bus associé
-- tous les tickets et donc le coût d'un ticket associé pour un voyage
-- la période sur laquelle on va effectuer l'étude en question
-Et la deuxième chose que l'on peut remarquer c'est que l'on aura des enregistrements régulier.
-Par conséquent, l'utilsation d'un entrepot de données est le système le plus adapté.
-En effet, les données statiques sont des "dimensions", et les enregistrement sont des "faits". De plus, le but de ce projet est de pouvoir faire des analyses statistiques journalière (et potentiellement sur une année).
+Quel systÃ¨me utiliser ?
+La premiÃ¨re chose que l'on peut remarquer, c'est que l'on a des donnÃ©es "statiques" :
+- chaque zone est dÃ©jÃ  dÃ©fini avec la ligne de bus associÃ©
+- tous les tickets et donc le coÃ»t d'un ticket associÃ© pour un voyage
+- la pÃ©riode sur laquelle on va effectuer l'Ã©tude en question
+Et la deuxiÃ¨me chose que l'on peut remarquer c'est que l'on aura des enregistrements rÃ©gulier.
+Par consÃ©quent, l'utilsation d'un entrepot de donnÃ©es est le systÃ¨me le plus adaptÃ©.
+En effet, les donnÃ©es statiques sont des "dimensions", et les enregistrement sont des "faits". De plus, le but de ce projet est de pouvoir faire des analyses statistiques journaliÃ¨re (et potentiellement sur une annÃ©e).
 
 Question  9 :
-Comment modéliser notre entrepot de données ?
+Comment modÃ©liser notre entrepot de donnÃ©es ?
 (voir img/modelisation.png)

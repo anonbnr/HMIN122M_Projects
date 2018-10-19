@@ -1,0 +1,19 @@
+Les services délivré par la TAM :
+- bus
+- tram
+- vélo
+- parking -> tram
+
+Les objectifs de la TAM :
+1) vendre plus de ticket et d'abonnement -> réduire l'utilisation de la voiture
+2) réduire les coûts lié au fonctionnement du réseau (consomation électrique tram vs consommation bus + rémunération chauffeurs + l'entretien)
+3) améliorer la qualité de service -> augmenter le nombre de bus/tram + réduire les retards 
+
+Nous constatons que les bus dégrade la qualité de service fournit par la TAM. 
+En effet, bien que les bus ont la même capacité à desservir les différentes zones de Montpellier que les tram, ils ont une qualité de services bien plus basse.
+Cela s'explique car il est impossible de desservir autant de bus que de tram, de plus les bus sont affecté par la circulation et donc par plus de retard, et des trajets qui dure plus longtemps.
+C'est pourquoi, la TAM s'efforce depuis des années à changer ses réseaux de bus, et à les supprimer par la création de ligne de tram (exemple : supression de la ligne 15 -> ligne 3 de tram).
+De plus, les lignes de tram impose d'utiliser moins la voiture au profit de l'utilisation des transports en commun (et donc du tram) : on le remarque lorsque la ligne 1 a été créé puisque désormais il est impossible de circuler en voiture en plein centre ville.
+
+Problématique : Créer une nouvelle ligne de tram sera-t-elle bénéfique pour la TAM ?
+
