@@ -1,0 +1,127 @@
+Data Mart Travel :
+==================
+Fact : Travel
+  - id_travel : int (degenerate dimension)
+  - id_date : int
+  - id_time : int
+  - id_traveler : int
+  - id_line : int
+  - id_station : int
+  - id_vehicle : int
+  - price_travel : real
+
+Dimension : Line
+  - id_line : int
+  - start_station : string
+  - end_station : string
+  - nb_stations : int
+  - distance_travel : int
+  - avg_duration_travel : int
+  - type_vehicle : string
+  - nb_served_people : int
+  - avg_duration_btw_stations : int
+
+Dimension : Station
+  - id_station : int
+  - name : string
+  - coord_x : float
+  - coord_y : float
+  - place : string
+  - disability_access : bool
+  - sheltered_for_rain : bool
+
+Dimension : Vehicle
+  - id_vehicle : int
+  - type : string
+  - model
+  - capacity : int
+  - max_speed : int
+  - nb_seats : int
+  - nb_standing_possible : int
+  - wheelchair_capacity : int
+
+Dimension : Traveler
+  - id_traveler : int
+  - anonymous : bool
+  - name : string
+  - surname : string
+  - birth_year : int
+  - gender : string
+  - address : string
+  - nationality : string
+  - ticket_price : float
+
+Dimension : Date
+  - id_date : int
+  - date : Date
+  - year : int
+  - month_year : int
+  - month_calendar : string
+  - day_month : int
+  - day_year : int
+  - day_week : int
+  - day_calendar : string
+  - holiday_indicator : string
+  - weekday_indicator : string
+
+Dimension : Time
+  - id_time : int
+  - hours : int
+  - minutes : int
+  - AM/PM indicator : string
+  - day_part_segment : string
+
+Data Mart Maintenance :
+=======================
+Fact : Maintenance
+  - id_date : int
+  - id_time : int
+  - id_vehicle : int
+  - id_driver : int
+  - id_technician : int
+  - id_technical_area : int
+  - cost : float
+  - estimated_time : int (in minutes)
+
+Dimension : Date (shared dimension between data marts)
+Dimension : Time (shared dimension between data marts)
+Dimension : Vehicle (shared dimension between data marts)
+Dimension : Driver
+  - id_driver : int
+  - name : string
+  - surname : string
+  - birth_year : int
+  - gender : string
+  - address : string
+  - nationality : string
+  - contract_type : string
+  - contract_start_year : int
+  - salary : float
+  - experience_years : int
+  - specialty : string
+  - tram_driver : bool
+  - bus_driver : bool
+
+Dimension : Technician
+  - id_technician : int
+  - name : string
+  - surname : string
+  - birth_year : int
+  - gender : string
+  - address : string
+  - nationality : string
+  - contract_type : string
+  - contract_start_year : int
+  - salary : float
+  - experience_years : int
+  - specialty : string
+
+Dimension : TechnicalArea
+  - id_technical_area : int
+  - address : string
+  - type_maintained_vehicles : string
+  - vehicles_capacity : int
+  - surface : float
+  - monthly_costs : float
+  - equipment_level : int
+  - workforce_size : int
