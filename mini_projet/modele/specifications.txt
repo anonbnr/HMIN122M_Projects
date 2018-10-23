@@ -12,6 +12,7 @@ Fact : Travel
 
 Dimension : Line
   - id_line : int
+  - nb_line : int
   - start_station : string
   - end_station : string
   - nb_stations : int
@@ -37,7 +38,7 @@ Dimension : Vehicle
   - capacity : int
   - max_speed : int
   - nb_seats : int
-  - nb_standing_possible : int
+  - standing_capacity : int
   - wheelchair_capacity : int
 
 Dimension : Traveler

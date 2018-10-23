@@ -197,5 +197,66 @@ Les mesures de la table des maintenances sont :
 \section*{Question 8}
 \label{sec:question_8}
 \addcontentsline{toc}{section}{\nameref{sec:question_8}}
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.1\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_travel}} & \textit{\textbf{id\_date}} & \textit{\textbf{id\_time}} & \textit{\textbf{id\_traveler}} & \textit{\textbf{id\_line}} & \textit{\textbf{id\_station}} & \textit{\textbf{id\_vehicle}} & \textit{\textbf{price\_travel}}\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Travel}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.25\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_line}} & \textbf{nb\_line} & \textbf{start\_station} & \textbf{end\_station} & \textbf{nb\_stations} & \textbf{distance\_travel} & \textbf{avg\_duration\_travel} & \textbf{type\_vehicle} & \textbf{nb\_served\_people} & \textbf{avg\_duration\_btw\_stations}\\
+      \hline
+      101 & 7 & Hôtel du département & La Martelle & 34 & 1510 & 45 & bus & 40 & 5\\
+      \hline
+      102 & 7 & Hôtel du département & Les Bouisses & 34 & 1515 & 45 & bus & 40 & 4\\
+      \hline
+      201 & 1 & Odysseum & Mosson & 30 & 15700 & 50 & tram & 150 & 2\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Line}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.1\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_station}} & \textbf{name} & \textbf{coord\_x} & \textbf{coord\_y} & \textbf{place} & \textbf{disability\_access} & \textbf{sheltered\_for\_rain}\\
+      \hline
+      1 & Hôtel du département & $43.622108$ & $3.835276$ & Avenue des moulins & \textit{false} & \textit{true}\\
+      \hline
+      2 & Pergola & $43.617558$ & $3.839687$ & Rue Paul Rimbaud & \textit{false} & \textit{true}\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Station}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.1\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_vehicle}} & \textbf{type} & \textbf{model} & \textbf{capacity} & \textbf{max\_speed} & \textbf{nb\_seats} & \textbf{standing\_capacity} & \textbf{wheelchair\_capacity}\\
+      \hline
+      1 & bus & TransBus Enviro30 & 40 & 200 & 20 & 40 & 5\\
+      \hline
+      2 & tram & Alstom Citadis 401 & 300 & 300 & 150 & 150 & 20\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Vehicle}
+\end{table}
 
 \end{document}
