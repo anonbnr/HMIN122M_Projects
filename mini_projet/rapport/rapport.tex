@@ -157,7 +157,7 @@ Les actions les plus pertinentes à analyser vis-à-vis les problématiques avan
 
 Les mesures de la table des voyages sont :
 \begin{itemize}
-  \item \texttt{cost\_travel} : additive
+  \item \texttt{travel\_cost} : additive
 \end{itemize}
 
 \newpage
@@ -193,7 +193,7 @@ Les mesures de la table des maintenances sont :
 \subsubsection{Remarques}
 \begin{itemize}
   \item l'attribut \textbf{id\_travel} de la table \texttt{Travel} est la clé primaire utilisé pour identifier un voyage (\textit{dimension dégénérée}).
-  \item l'attribut \textbf{cost\_travel} de la table \texttt{Travel} désigne le coût du voyage.
+  \item l'attribut \textbf{travel\_cost} de la table \texttt{Travel} désigne le coût du voyage.
   \item l'attribut \textbf{avg\_served\_people} de la table \texttt{Line} désigne le nombre de passagers en moyenne désservis par la ligne.
   \item l'attribut \textbf{place} de la table \texttt{Station} désigne l'endroit où se trouve la station (avenue $X$, rue $Y$, $\dots$).
   \item l'attribut \textbf{wheelchair\_capacity} de la table \texttt{Vehicle} désigne la capacité théorique maximale de personnes handicappées et de leurs fauteuils roulants.
@@ -333,7 +333,7 @@ Les mesures de la table des maintenances sont :
   \resizebox{1.1\textwidth}{!}{
     \begin{tabular}{ | l | l | l | l | l | l | l | l | l |}
       \hline
-      \underline{\textbf{id\_travel}} & \textit{\textbf{id\_date}} & \textit{\textbf{id\_time}} & \textit{\textbf{id\_traveler}} & \textit{\textbf{id\_line}} & \textit{\textbf{id\_station}} & \textit{\textbf{id\_vehicle}} & \textit{\textbf{cost\_travel}}\\
+      \underline{\textbf{id\_travel}} & \textit{\textbf{id\_date}} & \textit{\textbf{id\_time}} & \textit{\textbf{id\_traveler}} & \textit{\textbf{id\_line}} & \textit{\textbf{id\_station}} & \textit{\textbf{id\_vehicle}} & \textit{\textbf{travel\_cost}}\\
       \hline
       1 & 1 & 1 & 1 & 201 & 3 & 2 & 1\\
       \hline
