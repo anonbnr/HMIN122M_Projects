@@ -8,19 +8,19 @@ Fact : Travel
   - id_line : int
   - id_station : int
   - id_vehicle : int
-  - price_travel : real
+  - profit_travel : real (in euros)
 
 Dimension : Line
   - id_line : int
-  - nb_line : int
+  - num_line : int
+  - type_vehicle : string (bus or tram)
   - start_station : string
   - end_station : string
   - nb_stations : int
-  - distance_travel : int
-  - avg_duration_travel : int
-  - type_vehicle : string
-  - nb_served_people : int
-  - avg_duration_btw_stations : int
+  - distance_travel : int (in meters)
+  - avg_duration_travel : int (in minutes)
+  - avg_duration_btw_stations : int (in minutes)
+  - avg_served_people : int
 
 Dimension : Station
   - id_station : int
@@ -34,23 +34,24 @@ Dimension : Station
 Dimension : Vehicle
   - id_vehicle : int
   - type : string
-  - model
-  - capacity : int
-  - max_speed : int
+  - model : string
+  - max_speed : int (in km/h)
   - nb_seats : int
-  - standing_capacity : int
-  - wheelchair_capacity : int
+  - standing_capacity : int (theoretical maximum number of standing people)
+  - wheelchair_capacity : int (theoretical maximum number of handicapped people)
 
 Dimension : Traveler
   - id_traveler : int
-  - anonymous : bool
+  - anonymous : bool (true if the traveler is subscribed, false otherwise)
   - name : string
   - surname : string
   - birth_year : int
   - gender : string
   - address : string
   - nationality : string
-  - ticket_price : float
+  - subscription_type : string
+  - subscription_fees : float
+  - ticket_price : float (only if the traveler is not subscribed)
 
 Dimension : Date
   - id_date : int
@@ -59,17 +60,19 @@ Dimension : Date
   - month_year : int
   - month_calendar : string
   - day_month : int
-  - day_year : int
-  - day_week : int
   - day_calendar : string
+  - day_week : int
+  - day_year : int
   - holiday_indicator : string
   - weekday_indicator : string
 
 Dimension : Time
   - id_time : int
+  - full_time_description : string
   - hours : int
   - minutes : int
-  - AM/PM indicator : string
+  - seconds : int
+  - AM_PM_indicator : string
   - day_part_segment : string
 
 Data Mart Maintenance :
@@ -120,9 +123,9 @@ Dimension : Technician
 Dimension : TechnicalArea
   - id_technical_area : int
   - address : string
-  - type_maintained_vehicles : string
+  - type_maintained_vehicles : string (bus, tram, both)
   - vehicles_capacity : int
-  - surface : float
+  - surface : float (en m^2)
   - monthly_costs : float
-  - equipment_level : int
-  - workforce_size : int
+  - equipment_level : int (entre 1 pour pas assez équipé et 5 pour assez équipé)
+  - workforce_size : int (effectif)

@@ -157,7 +157,7 @@ Les actions les plus pertinentes à analyser vis-à-vis les problématiques avan
 
 Les mesures de la table des voyages sont :
 \begin{itemize}
-  \item \texttt{travel\_price} : additive
+  \item \texttt{profit\_travel} : additive
 \end{itemize}
 
 \newpage
@@ -190,6 +190,24 @@ Les mesures de la table des maintenances sont :
 
 \newpage
 
+\subsubsection{Remarques}
+\begin{itemize}
+  \item l'attribut \textbf{id\_travel} de la table \texttt{Travel} est la clé primaire utilisé pour identifier un voyage (\textit{dimension dégénérée}).
+  \item l'attribut \textbf{price\_travel} de la table \texttt{Travel} désigne la somme d'argent que la société gagne par voyageur selon le ticket acheté ou l'abonnement du voyageur associé.
+  \item l'attribut \textbf{avg\_served\_people} de la table \texttt{Line} désigne le nombre de passagers en moyenne désservis par la ligne.
+  \item l'attribut \textbf{place} de la table \texttt{Station} désigne l'endroit où se trouve la station (avenue $X$, rue $Y$, $\dots$).
+  \item l'attribut \textbf{standing\_capacity} de la table \texttt{Vehicle} désigne la capacité théorique maximale de personnes debout.
+  \item l'attribut \textbf{wheelchair\_capacity} de la table \texttt{Vehicle} désigne la capacité théorique maximale de personnes handicappées et de leurs fauteuils roulants.
+  \item la table \texttt{Traveler} est une dimension qui contient deux dimensions corrélées (les abonnés et les non abonnés) :
+  \begin{enumerate}
+    \item si le tuple désigne un \textbf{voyageur abonné}, alors on traite le tuple en tant qu'un \textbf{voyageur concret} dont les informations sont à notre disposition.
+    \item si le tuple désigne un \textbf{voyageur non abonné}, alors on traite le tuple en tant qu'un \textbf{type de voyageur} défini par le ticket qu'il utilise pour faire le trajet.
+    \item cette décision de corrélation est utilisée pour éviter la normalisation et l'introduction d'une superclasse abstraite étendue par les classes désignant les voyageurs abonnés et non abonnés.
+    \item nous utilisons ainsi l'attribut \textbf{anonymous} afin de distinguer les deux types de voyageurs. En effet, \textbf{anonymous} valera \textit{true} quand le voyageur est non abonné, sinon il valera \textit{true}.
+    \item les tuples de cette table contiendront ainsi des valeurs nulles pour certains attributs selon le type de voyageur.
+  \end{enumerate}
+\end{itemize}
+
 \section*{Question 7}
 \label{sec:question_7}
 \addcontentsline{toc}{section}{\nameref{sec:question_7}}
@@ -197,12 +215,17 @@ Les mesures de la table des maintenances sont :
 \section*{Question 8}
 \label{sec:question_8}
 \addcontentsline{toc}{section}{\nameref{sec:question_8}}
+
+\subsection*{Pour le \textit{data mart} de \og voyages \fg}
+\label{subsec:question_8_voyages}
+\addcontentsline{toc}{subsection}{\nameref{subsec:question_8_voyages}}
+
 \begin{table}[!ht]
   \centering
   \resizebox{1.1\textwidth}{!}{
     \begin{tabular}{ | l | l | l | l | l | l | l | l | l |}
       \hline
-      \underline{\textbf{id\_travel}} & \textit{\textbf{id\_date}} & \textit{\textbf{id\_time}} & \textit{\textbf{id\_traveler}} & \textit{\textbf{id\_line}} & \textit{\textbf{id\_station}} & \textit{\textbf{id\_vehicle}} & \textit{\textbf{price\_travel}}\\
+      \underline{\textbf{id\_travel}} & \textit{\textbf{id\_date}} & \textit{\textbf{id\_time}} & \textit{\textbf{id\_traveler}} & \textit{\textbf{id\_line}} & \textit{\textbf{id\_station}} & \textit{\textbf{id\_vehicle}} & \textit{\textbf{profit\_travel}}\\
       \hline
     \end{tabular}
   }
@@ -214,13 +237,13 @@ Les mesures de la table des maintenances sont :
   \resizebox{1.25\textwidth}{!}{
     \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l |}
       \hline
-      \underline{\textbf{id\_line}} & \textbf{nb\_line} & \textbf{start\_station} & \textbf{end\_station} & \textbf{nb\_stations} & \textbf{distance\_travel} & \textbf{avg\_duration\_travel} & \textbf{type\_vehicle} & \textbf{nb\_served\_people} & \textbf{avg\_duration\_btw\_stations}\\
+      \underline{\textbf{id\_line}} & \textbf{num\_line} & \textbf{type\_vehicle} & \textbf{start\_station} & \textbf{end\_station} & \textbf{nb\_stations} & \textbf{distance\_travel} & \textbf{avg\_duration\_travel} & \textbf{avg\_duration\_btw\_stations} & \textbf{avg\_served\_people}\\
       \hline
-      101 & 7 & Hôtel du département & La Martelle & 34 & 1510 & 45 & bus & 40 & 5\\
+      101 & 7 & bus & Hôtel du département & La Martelle & 34 & 1510 & 45 & 5 & 40\\
       \hline
-      102 & 7 & Hôtel du département & Les Bouisses & 34 & 1515 & 45 & bus & 40 & 4\\
+      102 & 7 & bus & Hôtel du département & Les Bouisses & 34 & 1515 & 45 & 4 & 40\\
       \hline
-      201 & 1 & Odysseum & Mosson & 30 & 15700 & 50 & tram & 150 & 2\\
+      201 & 1 & tram & Odysseum & Mosson & 30 & 15700 & 50 & 2 & 150\\
       \hline
     \end{tabular}
   }
@@ -245,18 +268,78 @@ Les mesures de la table des maintenances sont :
 
 \begin{table}[!ht]
   \centering
-  \resizebox{1.1\textwidth}{!}{
-    \begin{tabular}{ | l | l | l | l | l | l | l | l |}
+  \resizebox{1.2\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l |}
       \hline
-      \underline{\textbf{id\_vehicle}} & \textbf{type} & \textbf{model} & \textbf{capacity} & \textbf{max\_speed} & \textbf{nb\_seats} & \textbf{standing\_capacity} & \textbf{wheelchair\_capacity}\\
+      \underline{\textbf{id\_vehicle}} & \textbf{type} & \textbf{model} & \textbf{max\_speed} & \textbf{nb\_seats} & \textbf{standing\_capacity} & \textbf{wheelchair\_capacity}\\
       \hline
-      1 & bus & TransBus Enviro30 & 40 & 200 & 20 & 40 & 5\\
+      1 & bus & TransBus Enviro30 & 200 & 20 & 40 & 20\\
       \hline
-      2 & tram & Alstom Citadis 401 & 300 & 300 & 150 & 150 & 20\\
+      2 & tram & Alstom Citadis 401 & 300 & 100 & 150 & 150\\
       \hline
     \end{tabular}
   }
   \caption{Vehicle}
 \end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.2\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_traveler}} & \textbf{anonymous} & \textbf{name} & \textbf{surname} & \textbf{birth\_year} & \textbf{gender} & \textbf{address} & \textbf{nationality} & \textbf{subscription\_type} & \textbf{subscription\_fees} & \textbf{ticket\_price}\\
+      \hline
+      1 & \textit{true} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & 10\\
+      \hline
+      2 & \textit{true} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} & 1.60\\
+      \hline
+      100 & \textit{false} & Jean & Toto & 1995 & M & 16 avenue de titi & France & contrat mobilité jeune & 196 & \texttt{NULL}\\
+      \hline
+      101 & \textit{false} & Jane & Tutu & 1987 & F & 2 boulevard de nyehe & Angleterre & contrat mobilité pour tous & 481.50 & \texttt{NULL}\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Traveler}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.2\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_date}} & \textbf{date} & \textbf{year} & \textbf{month\_year} & \textbf{month\_calendar} & \textbf{day\_month} & \textbf{day\_calendar} & \textbf{day\_week} & \textbf{day\_year} & \textbf{holiday\_indicator} & \textbf{weekday\_indicator}\\
+      \hline
+      1 & 21/10/2018 & 2018 & 10 & Octobre & 21 & Dimanche & 0 & 294 & Non Holiday & Weekend\\
+      \hline
+      2 & 22/10/2018 & 2018 & 10 & Octobre & 22 & Lundi & 1 & 295 & Non Holiday & Weekday\\
+      \hline
+      3 & 31/10/2018 & 2018 & 10 & Octobre & 31 & Mercredi & 3 & 295 & Holiday & Weekday\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Date}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.2\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_time}} & \textbf{full\_time\_description} & \textbf{hours} & \textbf{minutes} & \textbf{seconds} & \textbf{AM\_PM\_indicator} & \textbf{day\_part\_segment}\\
+      \hline
+      1 & 12:00:00 & 12 & 0 & 0 & AM & Midnight\\
+      \hline
+      2 & 12:00:00 & 12 & 0 & 0 & PM & Midday\\
+      \hline
+      3 & 8:30:12 & 8 & 30 & 12 & PM & Afternoon\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Time}
+\end{table}
+
+\subsection*{Pour le \textit{data mart} de \og maintenance \fg}
+\label{subsec:question_8_maintenance}
+\addcontentsline{toc}{subsection}{\nameref{subsec:question_8_maintenance}}
 
 \end{document}
