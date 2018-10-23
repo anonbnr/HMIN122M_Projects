@@ -95,14 +95,14 @@ Les actions/opérations effectuées par \textit{tam-voyages} considérées :
   \item exemples de requêtes analytiques pour l'action \og voyages \fg :
   \begin{itemize}
     \item \texttt{le nombre de voyageurs par bus, utilisant des tickets pour le mois de juillet.}
-    \item \texttt{le prix moyen par type de ticket pour chaque voyage pendant les vacances de noël de 2018.}
+    \item \texttt{le prix moyen par voyage pendant les vacances de noël de 2018.} :
     \item \texttt{le nombre de voyageurs abonnés par ligne pour chaque voyage pour les deux derniers mois.}
     \item \texttt{l'arrêt le plus fréquenté par toutes les lignes de circulation.}
   \end{itemize}
   \item exemples de requêtes analytiques pour l'action \og maintenance \fg :
   \begin{itemize}
     \item \texttt{le nombre de bus maintenus pour le mois de septembre 2018.}
-    \item \texttt{les X premières lignes ayant le nombre maximale de maintenances par mois.}
+    \item \texttt{les X méchaniciens les plus expérimentés convoqués pour la maintenance des bus l'année précédente.}
     \item \texttt{les X premières véhicules nécessitant le plus de maintenance pour les 6 dernier mois.}
   \end{itemize}
   \item exemples de requêtes analytiques pour l'action \og ventes \fg :
@@ -211,6 +211,50 @@ Les mesures de la table des maintenances sont :
 \section*{Question 7}
 \label{sec:question_7}
 \addcontentsline{toc}{section}{\nameref{sec:question_7}}
+Avec la modélisation proposée de notre \textit{data warehouse} il est bien possible de répondre aux traitements analytiques proposés :
+
+\subsubsection{Pour l'action \og voyages \fg}
+\begin{enumerate}
+  \item \texttt{le nombre de voyageurs par bus, utilisant des tickets pour le mois de juillet} :
+  \begin{itemize}
+    \item la table \texttt{Travel} contient l'identifiant d'une date, l'identifiant d'un véhicule et l'identifiant d'un voyageur utilisant un ticket (ou pas).
+    \item les attributs des tables respectives, ainsi que l'utilisation des fonctions d'agrégation, permettent bien de répondre à cette requête.
+  \end{itemize}
+  \item \texttt{le prix moyen par voyage pendant les vacances de noël de 2018} :
+  \begin{itemize}
+    \item la table \texttt{Travel} contient l'identifiant d'une date et la mesure du prix d'un voyage \textbf{travel\_cost}.
+    \item les attributs des tables respectives, ainsi que l'utilisation des fonctions d'agrégation, permettent bien de répondre à cette requête.
+  \end{itemize}
+  \item \texttt{le nombre de voyageurs abonnés par ligne pour chaque voyage pour les deux derniers mois} :
+  \begin{itemize}
+    \item la table \texttt{Travel} contient l'identifiant d'une date, l'identifiant d'une ligne l'identifiant d'un voyageur abonné (ou pas).
+    \item les attributs des tables respectives, ainsi que l'utilisation des fonctions d'agrégation, permettent bien de répondre à cette requête.
+  \end{itemize}
+  \item \texttt{l'arrêt le plus fréquenté par toutes les lignes de circulation} :
+  \begin{itemize}
+    \item la table \texttt{Travel} contient l'identifiant d'une ligne et l'identifiant d'un arrêt où un voyageur a monté à bord.
+    \item les attributs des tables respectives, ainsi que l'utilisation des fonctions d'agrégation, permettent bien de répondre à cette requête.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Pour l'action \og maintenance \fg}
+\begin{enumerate}
+  \item \texttt{le nombre de bus maintenus pour le mois de septembre 2018} :
+  \begin{itemize}
+    \item la table \texttt{Maintenance} contient l'identifiant d'une date et l'identifiant d'un véhicule.
+    \item les attributs des tables respectives, ainsi que l'utilisation des fonctions d'agrégation, permettent bien de répondre à cette requête.
+  \end{itemize}
+  \item \texttt{les X méchaniciens les plus expérimentés convoqués pour la maintenance des bus l'année précédente} :
+  \begin{itemize}
+    \item la table \texttt{Maintenance} contient l'identifiant d'une date, l'identifiant d'un véhicule et l'identifiant d'un technicien.
+    \item les attributs des tables respectives, ainsi que l'utilisation des fonctions d'agrégation, permettent bien de répondre à cette requête.
+  \end{itemize}
+  \item \texttt{les X premières véhicules nécessitant le plus de maintenance pour les 6 dernier mois} :
+  \begin{itemize}
+    \item la table \texttt{Maintenance} contient l'identifiant d'une date et l'identifiant d'un véhicule.
+    \item les attributs des tables respectives, ainsi que l'utilisation des fonctions d'agrégation, permettent bien de répondre à cette requête.
+  \end{itemize}
+\end{enumerate}
 
 \section*{Question 8}
 \label{sec:question_8}
