@@ -1,4 +1,4 @@
-Data Mart Travel :
+﻿Data Mart Travel :
 ==================
 Fact : Travel
   - id_travel : int (degenerate dimension)
@@ -8,10 +8,10 @@ Fact : Travel
   - id_line : int
   - id_station : int
   - id_vehicle : int
-  - profit_travel : real (in euros)
+  - travel_cost : real (in euros)
 
 Dimension : Line
-  - id_line : int
+  - id : int
   - num_line : int
   - type_vehicle : string (bus or tram)
   - start_station : string
@@ -23,7 +23,7 @@ Dimension : Line
   - avg_served_people : int
 
 Dimension : Station
-  - id_station : int
+  - id : int
   - name : string
   - coord_x : float
   - coord_y : float
@@ -32,16 +32,16 @@ Dimension : Station
   - sheltered_for_rain : bool
 
 Dimension : Vehicle
-  - id_vehicle : int
+  - id : int
   - type : string
   - model : string
   - max_speed : int (in km/h)
+  - capacity_max : int (theoretical maximum number people total in vehicule)
   - nb_seats : int
-  - standing_capacity : int (theoretical maximum number of standing people)
-  - wheelchair_capacity : int (theoretical maximum number of handicapped people)
+  - wheelchair_capacity : int (number of seat for handicapped people)
 
 Dimension : Traveler
-  - id_traveler : int
+  - id : int
   - anonymous : bool (true if the traveler is subscribed, false otherwise)
   - name : string
   - surname : string
@@ -54,7 +54,7 @@ Dimension : Traveler
   - ticket_price : float (only if the traveler is not subscribed)
 
 Dimension : Date
-  - id_date : int
+  - id : int
   - date : Date
   - year : int
   - month_year : int
@@ -67,7 +67,7 @@ Dimension : Date
   - weekday_indicator : string
 
 Dimension : Time
-  - id_time : int
+  - id : int
   - full_time_description : string
   - hours : int
   - minutes : int
@@ -91,7 +91,7 @@ Dimension : Date (shared dimension between data marts)
 Dimension : Time (shared dimension between data marts)
 Dimension : Vehicle (shared dimension between data marts)
 Dimension : Driver
-  - id_driver : int
+  - id : int
   - name : string
   - surname : string
   - birth_year : int
@@ -102,12 +102,11 @@ Dimension : Driver
   - contract_start_year : int
   - salary : float
   - experience_years : int
-  - specialty : string
   - tram_driver : bool
   - bus_driver : bool
 
 Dimension : Technician
-  - id_technician : int
+  - id : int
   - name : string
   - surname : string
   - birth_year : int
@@ -118,10 +117,10 @@ Dimension : Technician
   - contract_start_year : int
   - salary : float
   - experience_years : int
-  - specialty : string
+  - speciality : string
 
 Dimension : TechnicalArea
-  - id_technical_area : int
+  - id : int
   - address : string
   - type_maintained_vehicles : string (bus, tram, both)
   - vehicles_capacity : int
