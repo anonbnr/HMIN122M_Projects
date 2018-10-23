@@ -157,7 +157,7 @@ Les actions les plus pertinentes à analyser vis-à-vis les problématiques avan
 
 Les mesures de la table des voyages sont :
 \begin{itemize}
-  \item \texttt{profit\_travel} : additive
+  \item \texttt{cost\_travel} : additive
 \end{itemize}
 
 \newpage
@@ -193,10 +193,9 @@ Les mesures de la table des maintenances sont :
 \subsubsection{Remarques}
 \begin{itemize}
   \item l'attribut \textbf{id\_travel} de la table \texttt{Travel} est la clé primaire utilisé pour identifier un voyage (\textit{dimension dégénérée}).
-  \item l'attribut \textbf{price\_travel} de la table \texttt{Travel} désigne la somme d'argent que la société gagne par voyageur selon le ticket acheté ou l'abonnement du voyageur associé.
+  \item l'attribut \textbf{cost\_travel} de la table \texttt{Travel} désigne le coût du voyage.
   \item l'attribut \textbf{avg\_served\_people} de la table \texttt{Line} désigne le nombre de passagers en moyenne désservis par la ligne.
   \item l'attribut \textbf{place} de la table \texttt{Station} désigne l'endroit où se trouve la station (avenue $X$, rue $Y$, $\dots$).
-  \item l'attribut \textbf{standing\_capacity} de la table \texttt{Vehicle} désigne la capacité théorique maximale de personnes debout.
   \item l'attribut \textbf{wheelchair\_capacity} de la table \texttt{Vehicle} désigne la capacité théorique maximale de personnes handicappées et de leurs fauteuils roulants.
   \item la table \texttt{Traveler} est une dimension qui contient deux dimensions corrélées (les abonnés et les non abonnés) :
   \begin{enumerate}
@@ -206,6 +205,7 @@ Les mesures de la table des maintenances sont :
     \item nous utilisons ainsi l'attribut \textbf{anonymous} afin de distinguer les deux types de voyageurs. En effet, \textbf{anonymous} valera \textit{true} quand le voyageur est non abonné, sinon il valera \textit{true}.
     \item les tuples de cette table contiendront ainsi des valeurs nulles pour certains attributs selon le type de voyageur.
   \end{enumerate}
+  \item l'attribut \textbf{equipment\_level} de la table \texttt{TechnicalArea} désigne le niveau de matériaux disponibles au local et pouvant prendre une valeur entre 1 (\textit{pas assez équipé}) et 5 (\textit{très bien équipé}).
 \end{itemize}
 
 \section*{Question 7}
@@ -219,18 +219,6 @@ Les mesures de la table des maintenances sont :
 \subsection*{Pour le \textit{data mart} de \og voyages \fg}
 \label{subsec:question_8_voyages}
 \addcontentsline{toc}{subsection}{\nameref{subsec:question_8_voyages}}
-
-\begin{table}[!ht]
-  \centering
-  \resizebox{1.1\textwidth}{!}{
-    \begin{tabular}{ | l | l | l | l | l | l | l | l | l |}
-      \hline
-      \underline{\textbf{id\_travel}} & \textit{\textbf{id\_date}} & \textit{\textbf{id\_time}} & \textit{\textbf{id\_traveler}} & \textit{\textbf{id\_line}} & \textit{\textbf{id\_station}} & \textit{\textbf{id\_vehicle}} & \textit{\textbf{profit\_travel}}\\
-      \hline
-    \end{tabular}
-  }
-  \caption{Travel}
-\end{table}
 
 \begin{table}[!ht]
   \centering
@@ -260,6 +248,8 @@ Les mesures de la table des maintenances sont :
       1 & Hôtel du département & $43.622108$ & $3.835276$ & Avenue des moulins & \textit{false} & \textit{true}\\
       \hline
       2 & Pergola & $43.617558$ & $3.839687$ & Rue Paul Rimbaud & \textit{false} & \textit{true}\\
+      \hline
+      3 & Odysseum & $43.603687$ & $3.921722$ & Place de Lisbonne & \textit{true} & \textit{true}\\
       \hline
     \end{tabular}
   }
@@ -338,8 +328,94 @@ Les mesures de la table des maintenances sont :
   \caption{Time}
 \end{table}
 
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.1\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_travel}} & \textit{\textbf{id\_date}} & \textit{\textbf{id\_time}} & \textit{\textbf{id\_traveler}} & \textit{\textbf{id\_line}} & \textit{\textbf{id\_station}} & \textit{\textbf{id\_vehicle}} & \textit{\textbf{cost\_travel}}\\
+      \hline
+      1 & 1 & 1 & 1 & 201 & 3 & 2 & 1\\
+      \hline
+      2 & 2 & 2 & 100 & 101 & 1 & 1 & 1.5\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Travel}
+\end{table}
+
+\newpage
+
 \subsection*{Pour le \textit{data mart} de \og maintenance \fg}
 \label{subsec:question_8_maintenance}
 \addcontentsline{toc}{subsection}{\nameref{subsec:question_8_maintenance}}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.2\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_driver}} & \textbf{name} & \textbf{surname} & \textbf{birth\_year} & \textbf{gender} & \textbf{address} & \textbf{nationality} & \textbf{contract\_type} & \textbf{contract\_start\_year} & \textbf{salary} & \textbf{experience\_years} & \textbf{tram\_driver} & \textbf{bus\_driver}\\
+      \hline
+      1 & Jeff & Lol & 1985 & M & 3 avenue de MDR & France & CDD & 2018 & 1700 & 1 & \textit{true} & \textit{false}\\
+      \hline
+      2 & Christy & DePelouse & 1982 & F & 10 boulevard de non & France & CDI & 2016 & 2100 & 2 & \textit{true} & \textit{true}\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Driver}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.2\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_technician}} & \textbf{name} & \textbf{surname} & \textbf{birth\_year} & \textbf{gender} & \textbf{address} & \textbf{nationality} & \textbf{contract\_type} & \textbf{contract\_start\_year} & \textbf{salary} & \textbf{experience\_years} & \textbf{specialty}\\
+      \hline
+      1 & Samuel & Bro & 1987 & M & 20 rue de riz & France & CDI & 2017 & 1600 & 2 & Méchanicien\\
+      \hline
+      2 & Anaïs & Jeune & 1983 & F & 12 avenue de rodez & France & CDD & 2018 & 1400 & 1 & Électricien\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Technician}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.2\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l |}
+      \hline
+      \underline{\textbf{id\_technical\_area}} & \textbf{address} & \textbf{type\_maintained\_vehicles} & \textbf{vehicles\_capacity} & \textbf{surface} & \textbf{monthly\_costs} & \textbf{equipment\_level} & \textbf{workforce\_size}\\
+      \hline
+      1 & 5 boulevard de marianne & bus & 50 & 5 & 1400 & 3 & 200\\
+      \hline
+      1 & 12 avenue de ludovic & tram & 20 & 20 & 2000 & 4 & 400\\
+      \hline
+    \end{tabular}
+  }
+  \caption{TechnicalArea}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \resizebox{1.1\textwidth}{!}{
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l |}
+      \hline
+      \textit{\textbf{id\_date}} & \textit{\textbf{id\_time}} & \textit{\textbf{id\_vehicle}} & \textit{\textbf{id\_driver}} & \textit{\textbf{id\_technician}} & \textit{\textbf{id\_technical\_area}} & \textbf{cost} & \textbf{estimated\_time}\\
+      \hline
+      2 & 2 & 1 & 1 & 1 & 1 & 100 & 45\\
+      \hline
+      3 & 2 & 1 & 1 & 1 & 1 & 50 & 20\\
+      \hline
+      2 & 2 & 2 & 2 & 2 & 2 & 150 & 60\\
+      \hline
+      3 & 2 & 2 & 2 & 2 & 2 & 100 & 40\\
+      \hline
+    \end{tabular}
+  }
+  \caption{Maintenance}
+\end{table}
 
 \end{document}

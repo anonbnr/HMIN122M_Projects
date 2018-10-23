@@ -8,7 +8,7 @@ Fact : Travel
   - id_line : int
   - id_station : int
   - id_vehicle : int
-  - profit_travel : real (in euros)
+  - cost_travel : real (in euros)
 
 Dimension : Line
   - id_line : int
@@ -17,7 +17,7 @@ Dimension : Line
   - start_station : string
   - end_station : string
   - nb_stations : int
-  - distance_travel : int (in meters)
+  - distance_travel : int (in km)
   - avg_duration_travel : int (in minutes)
   - avg_duration_btw_stations : int (in minutes)
   - avg_served_people : int
@@ -37,8 +37,8 @@ Dimension : Vehicle
   - model : string
   - max_speed : int (in km/h)
   - nb_seats : int
-  - standing_capacity : int (theoretical maximum number of standing people)
-  - wheelchair_capacity : int (theoretical maximum number of handicapped people)
+  - max_capacity : int (theoretical maximum number people)
+  - wheelchair_capacity : int (theoretical number of places that can be occupied by handicapped people's wheelchairs)
 
 Dimension : Traveler
   - id_traveler : int
@@ -102,7 +102,6 @@ Dimension : Driver
   - contract_start_year : int
   - salary : float
   - experience_years : int
-  - specialty : string
   - tram_driver : bool
   - bus_driver : bool
 
