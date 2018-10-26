@@ -72,7 +72,6 @@ Dimension : Time
   - full_time_description : string
   - hours : int
   - minutes : int
-  - seconds : int
   - AM_PM_indicator : string
   - day_part_segment : string
 

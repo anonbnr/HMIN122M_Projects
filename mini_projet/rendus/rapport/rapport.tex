@@ -1,0 +1,83 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{listingsutf8}
+\usepackage[colorlinks,urlcolor=blue]{hyperref} %hyperlinks
+\usepackage[nottoc,notlot,notlof]{tocbibind} %To bind the table of contents to the bibligoraphy
+\usepackage{../../../packages/tikz-uml} %UML elements
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines
+\center
+%----------------------------------------------------------------------------------------
+%   LOGOS SECTION
+%----------------------------------------------------------------------------------------
+\includegraphics[scale=0.5]{images/umLogo.png} % Université de Montpellier Logo
+\hspace{\fill}
+\includegraphics[scale=0.25]{images/fdsLogo.jpg} % Faculté de Sciences Logo
+%----------------------------------------------------------------------------------------
+%   HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+\textsc{\LARGE M1 Informatique AIGLE}\\[1cm]
+\textsc{\Large \textbf{HMIN122M}}\\[0.25cm]
+\textsc{\large Mini-Projet : entrepôts de données}\\[0.8cm]
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+\HRule \\[0.4cm]
+{ \huge \bfseries Rapport}\\[0.4cm]
+\HRule \\[0.8cm]
+%----------------------------------------------------------------------------------------
+%   AUTHORS SECTION
+%----------------------------------------------------------------------------------------
+\begin{minipage}{\textwidth}
+\centering \huge
+Bachar \textsc{Rima}\\ % Student
+Joseph \textsc{Saba}\\ % Student
+Tasnim \textsc{Shaqura Muhammad}\\ % Student
+Jérémy \textsc{Bourgin} % Student
+\end{minipage} \\[0.8cm]
+%----------------------------------------------------------------------------------------
+%   DATE SECTION
+%----------------------------------------------------------------------------------------
+{\large \today}\\[1cm]
+\hspace{\fill}
+\vfill % Fill the rest of the page with whitespace
+\end{titlepage}
+
+\pagestyle{plain}
+
+{
+  \hypersetup{linkcolor=black}
+  \tableofcontents
+}
+
+\newpage
+
+\chapter*{Questions}
+\label{chap:questions}
+\addcontentsline{toc}{chapter}{\nameref{chap:questions}}
+
+\section*{Question 9}
+\label{sec:question_1}
+\addcontentsline{toc}{section}{\nameref{sec:question_1}}
+
+\section*{Question 13}
+\label{sec:question_2}
+\addcontentsline{toc}{section}{\nameref{sec:question_2}}
+
+\section*{Question 14}
+\label{sec:question_3}
+\addcontentsline{toc}{section}{\nameref{sec:question_3}}
+
+\section*{Question 15}
+\label{sec:question_4}
+\addcontentsline{toc}{section}{\nameref{sec:question_4}}
+
+\end{document}
