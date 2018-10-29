@@ -1,3 +1,4 @@
+/*EMPLOYEES*/
 INSERT INTO Employee VALUES (1,1977,'1 rue A 34000 Montpellier','Michel','Mercier','M', 'français','CDI',1990,3000,22);
 INSERT INTO Employee VALUES (2,1987,'2 rue D 34000 Montpellier','Durand','Dubois','M', 'français','CDI',2005,2100,10);
 INSERT INTO Employee VALUES (3,1990,'3 rue A 34000 Montpellier','Bernard','Richard','M', 'français','CDI',2011,2000,7);
@@ -205,15 +206,14 @@ INSERT INTO Employee VALUES (200,1988,'316 rue G 34000 Montpellier','Duval','Bai
 INSERT INTO Employee VALUES (201,1988,'427 rue A 34000 Montpellier','Gomez','Julien','M', 'français','CDI',2009,2500,14);
 INSERT INTO Employee VALUES (202,1977,'444 rue F 34000 Montpellier','Klein','Mallet','M', 'français','CDI',2000,2800,18);
 
-
+/*MAINTENANCE TYPE*/
 INSERT INTO MaintenanceType VALUES (1,'systématique',20);
-INSERT INTO MaintenanceType VALUES (1,'conditionnelle',30);
-INSERT INTO MaintenanceType VALUES (2,'prévisionnelle',10);
-INSERT INTO MaintenanceType VALUES (3,'corrective',40);
-INSERT INTO MaintenanceType VALUES (4,'palliative',20);
-INSERT INTO MaintenanceType VALUES (5,'curative',40);
+INSERT INTO MaintenanceType VALUES (2,'conditionnelle',30);
+INSERT INTO MaintenanceType VALUES (3,'prévisionnelle',10);
+INSERT INTO MaintenanceType VALUES (4,'corrective',40);
+INSERT INTO MaintenanceType VALUES (5,'palliative',20);
+INSERT INTO MaintenanceType VALUES (6,'curative',40);
 
-
+/*TECHNICAL AREA*/
 INSERT INTO TechnicalArea VALUES (1,'5 boulevard de marianne','bus',50,5,1400,3,200);
 INSERT INTO TechnicalArea VALUES (2,'12 avenue de ludovic','tram',20,20,2000,4,400);
-
