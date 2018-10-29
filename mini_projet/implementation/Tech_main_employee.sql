@@ -66,7 +66,7 @@ INSERT INTO Employee VALUES (64,1985,'65 rue Q 34000 Montpellier','Michel','Nico
 INSERT INTO Employee VALUES (65,1970,'69 rue M 34000 Montpellier','Rousseau','Clara','F', 'française','CDD',1998,3500,25);
 INSERT INTO Employee VALUES (66,1977,'1111 rue M 34000 Montpellier','Perrin','Julia','F', 'française','CDI',2004,2500,11);
 INSERT INTO Employee VALUES (67,1974,'1587 rue L 34000 Montpellier','Mercier','Robin','M', 'français','CDD',2000,3500,23);
-INSERT INTO Employee VALUES (68,1973,'2547 rue K 34000 Montpellier','Laurent','	Lopez','M', 'français','CDD',1998,3400,22);
+INSERT INTO Employee VALUES (68,1973,'2547 rue K 34000 Montpellier','Laurent','Lopez','M', 'français','CDD',1998,3400,22);
 INSERT INTO Employee VALUES (69,1979,'543 rue A 34000 Montpellier','Michel','Francois','M', 'français','CDD',2003,2500,15);
 INSERT INTO Employee VALUES (70,1982,'17 rue H 34000 Montpellier','Dupont','Robin','M', 'français','CDD',2002,2500,16);
 INSERT INTO Employee VALUES (71,1983,'1 rue Q 34000 Montpellier','Michel','Durand','M', 'français','CDI',2007,2400,11);
