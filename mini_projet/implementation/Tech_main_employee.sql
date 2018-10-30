@@ -218,7 +218,7 @@ INSERT INTO MaintenanceType VALUES (10,'Battery Replacement',1);
 INSERT INTO MaintenanceType VALUES (11,'Dashboard',2);
 INSERT INTO MaintenanceType VALUES (12,'Embedded Systems',3);
 INSERT INTO MaintenanceType VALUES (13,'Bus Body',2);
-INSERT INTO MaintenanceType VALUES (14,'Air Conditioner',30);
+INSERT INTO MaintenanceType VALUES (14,'Air Conditioner',2);
 INSERT INTO MaintenanceType VALUES (15,'The Wheel',1);
 INSERT INTO MaintenanceType VALUES (16,'Painting',1);
 
