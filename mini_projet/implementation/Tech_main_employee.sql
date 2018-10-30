@@ -205,22 +205,22 @@ INSERT INTO Employee VALUES (201,1988,'427 rue A 34000 Montpellier','Gomez','Jul
 INSERT INTO Employee VALUES (202,1977,'444 rue F 34000 Montpellier','Klein','Charlotte','F', 'french','CDD',2000,2800,18);
 
 /*MAINTENANCE TYPE*/
-INSERT INTO MaintenanceType VALUES (1,'moteur',5);
-INSERT INTO MaintenanceType VALUES (2,'boîte de vitesses',3);
-INSERT INTO MaintenanceType VALUES (3,'pont',5);
-INSERT INTO MaintenanceType VALUES (4,'essieux',4);
-INSERT INTO MaintenanceType VALUES (5,'freinage',3);
-INSERT INTO MaintenanceType VALUES (6,'circuits pneumatiques',3);
-INSERT INTO MaintenanceType VALUES (7,'éclairage intérieur ',2);
-INSERT INTO MaintenanceType VALUES (8,'éclairage extérieur',2);
-INSERT INTO MaintenanceType VALUES (9,'alternateur',3);
-INSERT INTO MaintenanceType VALUES (10,'le remplacement des batteries',1);
-INSERT INTO MaintenanceType VALUES (11,'le tableau de bord',2);
-INSERT INTO MaintenanceType VALUES (12,'les systèmes embarqués',3);
-INSERT INTO MaintenanceType VALUES (13,'carrosserie',2);
-INSERT INTO MaintenanceType VALUES (14,'climatisation',5);
-INSERT INTO MaintenanceType VALUES (15,'la roue',1);
-INSERT INTO MaintenanceType VALUES (16,'peinture',1);
+INSERT INTO MaintenanceType VALUES (1,'Motor',5);
+INSERT INTO MaintenanceType VALUES (2,'Gearbox',3);
+INSERT INTO MaintenanceType VALUES (3,'Bridge',5);
+INSERT INTO MaintenanceType VALUES (4,'Axles',4);
+INSERT INTO MaintenanceType VALUES (5,'Braking',3);
+INSERT INTO MaintenanceType VALUES (6,'Pneumatic Circuits',3);
+INSERT INTO MaintenanceType VALUES (7,'Interior Lighting ',2);
+INSERT INTO MaintenanceType VALUES (8,'Exterior Lighting',2);
+INSERT INTO MaintenanceType VALUES (9,'Alternator',3);
+INSERT INTO MaintenanceType VALUES (10,'Battery Replacement',1);
+INSERT INTO MaintenanceType VALUES (11,'Dashboard',2);
+INSERT INTO MaintenanceType VALUES (12,'Embedded Systems',3);
+INSERT INTO MaintenanceType VALUES (13,'Bus Body',2);
+INSERT INTO MaintenanceType VALUES (14,'Air Conditioner',30);
+INSERT INTO MaintenanceType VALUES (15,'The Wheel',1);
+INSERT INTO MaintenanceType VALUES (16,'Painting',1);
 
 /*TECHNICAL AREA*/
 INSERT INTO TechnicalArea VALUES (1,'5 boulevard de marianne','bus',50,5,1400,3,200);
