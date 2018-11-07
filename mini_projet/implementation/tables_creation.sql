@@ -49,11 +49,11 @@ CREATE TABLE Line(
 	start_station VARCHAR(50) NOT NULL,
 	end_station VARCHAR(50) NOT NULL,
 	nb_stations INT NOT NULL,
-	distance_travel INT NOT NULL, --in km
-	avg_duration_travel INT NOT NULL, --in minutes
+	distance_travel NUMBER NOT NULL, --in km
+	avg_duration_travel NUMBER NOT NULL, --in minutes
 	type_vehicle VARCHAR(5) NOT NULL,
 	nb_served_people INT NOT NULL,
-	avg_duration_btw_stations INT NOT NULL, --in minutes
+	avg_duration_btw_stations NUMBER NOT NULL, --in seconds
 	CONSTRAINT PK_LINE
 		PRIMARY KEY(id)
 );
@@ -113,7 +113,7 @@ CREATE TABLE TechnicalArea(
 	id INT,
 	address VARCHAR(100),
 	vehicule_capacity INT,
-	type_maintained_vehicules VARCHAR(5),
+	type_maintained_vehicules VARCHAR(15),
 	surface INT, --in m^2
 	monthly_cost NUMBER,
 	equipment_level INT,

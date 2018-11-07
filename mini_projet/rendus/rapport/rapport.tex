@@ -60,24 +60,73 @@ Jérémy \textsc{Bourgin} % Student
 
 \newpage
 
-\chapter*{Questions}
-\label{chap:questions}
-\addcontentsline{toc}{chapter}{\nameref{chap:questions}}
+\chapter{Introduction}
+\section{Problématiques}
+Dans le cadre du mini-projet du module \textbf{HMIN122M}, nous avons décidé de modéliser un entrepôts de données pour le réseau de transport publique de Montpellier, \textit{tam-voyages}. Pour ce faire, nous avons proposé des \textit{data marts} formant le \textit{data warehouse} et permettant de réaliser des requêtes analytiques sur un ensemble important de données. Cette modélisation permettra ainsi de mettre en \oe{}uvre un outil d'analyse permettant de bien répondre aux problématiques suivantes :
+\begin{enumerate}
+  \item Comment \textit{tam-voyages} pourront-ils augmenter leur taux de ventes en se basant sur la circulation du réseau\footnote{en particulier en examinant les lignes de tramway et les bus} ?
+  \item Comment \textit{tam-voyages} pourront-ils suivre l'évolution et la maintenance de leurs matériaux de manière à réduire les dépenses qui y sont associées ?
+\end{enumerate}
 
-\section*{Question 9}
-\label{sec:question_1}
-\addcontentsline{toc}{section}{\nameref{sec:question_1}}
+Ces problématiques seront ainsi adressées en analyzant les actions et opérations effectuées par \textit{tam-voyages}, notamment en choisissant celles qui paraissent les plus pertinentes et les plus importantes en termes de données intégrées et flexibilité des critères d'analyse.
 
-\section*{Question 13}
-\label{sec:question_2}
-\addcontentsline{toc}{section}{\nameref{sec:question_2}}
+\section{Actions et opérations}
+Les actions/opérations effectuées par \textit{tam-voyages} considérées :
+\begin{itemize}
+  \item Les voyages.
+  \item La maintenance de véhicules.
+  \item Les ventes de tickets et les abonnements.
+  \item Les amendes.
+\end{itemize}
 
-\section*{Question 14}
-\label{sec:question_3}
-\addcontentsline{toc}{section}{\nameref{sec:question_3}}
+Les actions considérées, par ordre d'importance:
+\begin{enumerate}
+  \item \og voyages \fg.
+  \item \og ventes \fg.
+  \item \og maintenance \fg.
+  \item \og amendes \fg.
+\end{enumerate}
 
-\section*{Question 15}
-\label{sec:question_4}
-\addcontentsline{toc}{section}{\nameref{sec:question_4}}
+Les actions les plus pertinentes à analyser vis-à-vis les problématiques avancées sont \og voyages \fg et \og maintenance \fg qu'on traitera de la manière suivante :
+\begin{description}
+  \item [voyages :] modèle en étoile détaillé.
+  \item [maintenance :] modèle en étoile \textit{moins} détaillé, en particulier le modèle intitulé "\textit{periodic snapshot}".
+\end{description}
+
+\section{Exemples de requêtes analytiques possibles}
+\begin{enumerate}
+  \item exemples de requêtes analytiques pour l'action \og voyages \fg :
+  \begin{itemize}
+    \item \texttt{le nombre de voyageurs par bus, utilisant des tickets pour le mois de juillet.}
+    \item \texttt{le prix moyen par voyage pendant les vacances de noël de 2018.} :
+    \item \texttt{le nombre de voyageurs abonnés par ligne pour chaque voyage pour les deux derniers mois.}
+    \item \texttt{l'arrêt le plus fréquenté par toutes les lignes de circulation.}
+  \end{itemize}
+  \item exemples de requêtes analytiques pour l'action \og maintenance \fg :
+  \begin{itemize}
+    \item \texttt{le nombre de bus maintenus pour le mois de septembre 2018.}
+    \item \texttt{les X méchaniciens les plus expérimentés convoqués pour la maintenance des bus l'année précédente.}
+    \item \texttt{les X premières véhicules nécessitant le plus de maintenance pour les 6 dernier mois.}
+  \end{itemize}
+  \item exemples de requêtes analytiques pour l'action \og ventes \fg :
+  \begin{itemize}
+    \item \texttt{le nombre d'abonnés ayant plus que 26 ans pour le mois d'août 2018.}
+    \item \texttt{le nombre d'abonnés par date de naissance pour l'année 2018.}
+    \item \texttt{les types d'abonnement les plus fréquents pour l'année 2018.}
+  \end{itemize}
+  \item exemples de requêtes analytiques pour l'action \og amendes \fg :
+  \begin{itemize}
+    \item \texttt{les lignes qui ont générées le plus d'amendes pour les deux derniers mois.}
+    \item \texttt{les lignes les plus contrôllées de la semaine dernière.}
+    \item \texttt{le nombre des abonnés qui ont reçu des amendes par ligne, l'avant-midi.}
+    \item \texttt{la somme total d'amendes rapportée par type de voyageur par ligne pour le dernier mois.}
+  \end{itemize}
+\end{enumerate}
+
+\chapter{Modélisation}
+
+\chapter{Implémentation}
+
+\chapter{Conclusion}
 
 \end{document}
