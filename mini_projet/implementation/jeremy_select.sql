@@ -15,25 +15,6 @@ AND Traveler.anonymous = 0
 GROUP BY Line.num_line
 ORDER BY Line.num_line;
 
--- 3) Quelle est l'arrêt le plus fréquenté pour chaque ligne ?
-
-SELECT Line.num_line, Station.id, Station.name, COUNT(station.id) AS frequentation
-FROM Travel
-INNER JOIN Line
-	ON Travel.id_line = Line.id
-INNER JOIN Station
-	ON Travel.id_station = Station.id
-GROUP BY Line.num_line, Station.id, Station.name
-HAVING COUNT(Station.id) = (SELECT MAX(COUNT(*))
-							FROM Travel
-							INNER JOIN Line sl
-								ON Travel.id_line = sl.id
-							INNER JOIN Station
-								ON Travel.id_station = Station.id
-							WHERE sl.num_line = Line.num_line
-							GROUP BY Station.id)
-ORDER BY Line.num_line, Station.id;
-
 -- 5) Pour chaque ligne quelle est le véhicule le plus utilisé par les voyageurs
 
 SELECT Line.num_line, Vehicle.id, COUNT(Vehicle.id) AS number_vehicle
@@ -64,4 +45,3 @@ INNER JOIN Date_t
 WHERE Vehicle.type = 'bus'
 AND Date_t.month_year = 9
 AND Date_t.year = 2018;
-
