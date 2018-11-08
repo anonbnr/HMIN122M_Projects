@@ -108,6 +108,13 @@ CREATE TABLE MaintenanceType(
     PRIMARY KEY(id)
 );
 
+CREATE TABLE OperationType(
+	id INT,
+	name VARCHAR(100),
+	CONSTRAINT PK_OPERATION
+		PRIMARY KEY(id)
+);
+
 CREATE TABLE TechnicalArea(
 	id INT,
 	address VARCHAR(100),
@@ -146,14 +153,6 @@ CREATE TABLE Travel(
 		FOREIGN KEY(id_vehicle) REFERENCES Vehicle(id)
 );
 
-CREATE TABLE Operation_Type(
-	id INT,
-	name varchar(50),
-	CONSTRAINT PK_OPERATION 
-		PRIMARY KEY(id)
-);
-
-
 CREATE TABLE Maintenance(
 	id INT,
 	id_date INT,
@@ -166,7 +165,7 @@ CREATE TABLE Maintenance(
 	status INT,
 	cost NUMBER,
   CONSTRAINT PK_MAINTENANCE
-    PRIMARY KEY(id, id_date, id_time, id_vehicle, id_employee, id_technical_area, id_maintenance_type),
+    PRIMARY KEY(id, id_date, id_time, id_vehicle, id_employee, id_technical_area, id_maintenance_type, id_operation_type, status),
   CONSTRAINT FK_MAINTENANCE_DATE
     FOREIGN KEY(id_date) REFERENCES Date_t(id),
   CONSTRAINT FK_MAINTENANCE_TIME
@@ -180,6 +179,5 @@ CREATE TABLE Maintenance(
   CONSTRAINT FK_MAINTENANCE_MAIN_TYPE
     FOREIGN KEY(id_maintenance_type) REFERENCES MaintenanceType(id),
   CONSTRAINT FK_MAINTENANCE_OPERATION_TYPE
-    FOREIGN KEY(id_operation_type) REFERENCES Operation_Type(id)
-
+    FOREIGN KEY(id_operation_type) REFERENCES OperationType(id)
 );

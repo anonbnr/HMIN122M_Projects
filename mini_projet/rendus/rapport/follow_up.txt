@@ -1,5 +1,6 @@
 Model:
-- rename estimated_time into maintenance_duration in maintenance data-mart photo
+- add Operation_type table into maintenance data mart
+- modify maintenance fact table to include id_maintenance and id_operation_type
 
 Code:
 
