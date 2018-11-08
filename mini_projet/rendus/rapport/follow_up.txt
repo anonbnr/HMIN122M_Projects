@@ -2,8 +2,6 @@ Model:
 - rename estimated_time into maintenance_duration in maintenance data-mart photo
 
 Code:
-- change attribute subscription_type into VARCHAR(20)
-
 
 Report
 Introduction :
