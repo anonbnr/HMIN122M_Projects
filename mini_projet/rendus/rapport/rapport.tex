@@ -79,33 +79,18 @@ Les actions/opérations effectuées par \textit{tam-voyages} considérées :
   \item Les amendes.
 \end{itemize}
 
-Les actions considérées, par ordre d'importance:
-\begin{enumerate}
-  \item \og voyages \fg.
-  \item \og ventes \fg.
-  \item \og maintenance \fg.
-  \item \og amendes \fg.
-\end{enumerate}
-
-Les actions les plus pertinentes à analyser vis-à-vis les problématiques avancées sont \og voyages \fg et \og maintenance \fg qu'on traitera de la manière suivante :
-\begin{description}
-  \item [voyages :] modèle en étoile détaillé.
-  \item [maintenance :] modèle en étoile \textit{moins} détaillé, en particulier le modèle intitulé "\textit{periodic snapshot}".
-\end{description}
-
 \section{Exemples de requêtes analytiques possibles}
 \begin{enumerate}
   \item exemples de requêtes analytiques pour l'action \og voyages \fg :
   \begin{itemize}
     \item \texttt{le nombre de voyageurs par bus, utilisant des tickets pour le mois de juillet.}
-    \item \texttt{le prix moyen par voyage pendant les vacances de noël de 2018.} :
-    \item \texttt{le nombre de voyageurs abonnés par ligne pour chaque voyage pour les deux derniers mois.}
+    \item \texttt{le nombre moyen de voyageurs abonnés par ligne pour chaque voyage pour les deux derniers mois.}
     \item \texttt{l'arrêt le plus fréquenté par toutes les lignes de circulation.}
   \end{itemize}
   \item exemples de requêtes analytiques pour l'action \og maintenance \fg :
   \begin{itemize}
     \item \texttt{le nombre de bus maintenus pour le mois de septembre 2018.}
-    \item \texttt{les X méchaniciens les plus expérimentés convoqués pour la maintenance des bus l'année précédente.}
+    \item \texttt{les X employés les plus expérimentés convoqués pour la maintenance des bus pour le dernier mois.}
     \item \texttt{les X premières véhicules nécessitant le plus de maintenance pour les 6 dernier mois.}
   \end{itemize}
   \item exemples de requêtes analytiques pour l'action \og ventes \fg :
@@ -124,6 +109,22 @@ Les actions les plus pertinentes à analyser vis-à-vis les problématiques avan
 \end{enumerate}
 
 \chapter{Modélisation}
+\section{Choix des actions à modéliser}
+Les actions considérées, par ordre d'importance:
+\begin{enumerate}
+  \item \og voyages \fg.
+  \item \og ventes \fg.
+  \item \og maintenance \fg.
+  \item \og amendes \fg.
+\end{enumerate}
+
+Les actions les plus pertinentes à analyser vis-à-vis les problématiques avancées sont \og voyages \fg et \og maintenance \fg qu'on traitera de la manière suivante :
+\begin{description}
+  \item [voyages :] modèle en étoile détaillé.
+  \item [maintenance :] modèle en étoile \textit{moins} détaillé, en particulier le modèle intitulé "\textit{periodic snapshot}".
+\end{description}
+
+\section{Modélisation des voyages}
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.4]{images/voyages_datamart.png}
@@ -132,33 +133,11 @@ Les actions les plus pertinentes à analyser vis-à-vis les problématiques avan
 
 \newpage
 
-La table des voyages n'admet aucune mesure; on se contentera d'utiliser les informations fournies par les dimensions qui suffiront largement pour analyser la fréquentation des différentes lignes et véhicules correspondant.
-
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[scale=0.4]{images/maintenance_datamart.png}
-  \caption{modèle en étoile de l'action \og maintenance \fg}
-\end{figure}
-
-Les mesures de la table des maintenances sont :
+\subsection{Discussion}
 \begin{itemize}
-  \item \texttt{cost} : mesure additive désignant le coût de maintenance d'un véhicule pour une transaction donnée
-\end{itemize}
-
-\newpage
-
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[scale=0.4]{images/data_warehouse.png}
-  \caption{le \textit{data warehouse} résultant}
-\end{figure}
-
-\subsubsection{Remarques}
-\begin{itemize}
-  \item l'attribut \textbf{id\_travel} de la table \texttt{Travel} est la clé primaire utilisée pour identifier un voyage (\textit{dimension dégénérée}).
-  \item l'attribut \textbf{nb\_served\_people} de la table \texttt{Line} désigne le nombre de passagers désservis par la ligne.
-  \item l'attribut \textbf{place} de la table \texttt{Station} désigne l'endroit où se trouve la station (avenue $X$, rue $Y$, $\dots$).
-  \item l'attribut \textbf{wheelchair\_capacity} de la table \texttt{Vehicle} désigne la capacité théorique maximale de personnes handicappées et de leurs fauteuils roulants.
+  \item chaque tuple dans la table \texttt{Vehicle} désigne un véhicule possédé par la société.
+  \item chaque tuple dans la table \texttt{Ligne} désigne une itinéraire prise par une ligne. Autrement dit, la même ligne peut avoir plusieurs itinéraires différentes (\textit{e.g. la ligne 3 possède 4 itinéraires différentes})
+  \item chaque tuple dans la table \texttt{Station} désigne une station desservie par un véhicule.
   \item la table \texttt{Traveler} est une dimension qui contient deux dimensions corrélées (les abonnés et le voyageur anonyme non abonné utilisant un ticket) :
   \begin{enumerate}
     \item si le voyageur est \textbf{abonné}, alors on traite le tuple correspondant en tant qu'un \textbf{voyageur concret} dont les informations sont à notre disposition.
@@ -167,10 +146,62 @@ Les mesures de la table des maintenances sont :
     \item nous utilisons ainsi l'attribut \textbf{anonymous} afin de distinguer les deux types de voyageurs. En effet, \textbf{anonymous} valera \textit{true} quand le voyageur est non abonné, sinon il valera \textit{true}.
     \item le tuple du \textbf{voyageur non abonné} contiendra ainsi des \textbf{valeurs nulles} pour les attributs décrivant un \textbf{voyageur abonné}.
   \end{enumerate}
-  \item l'attribut \textbf{equipment\_level} de la table \texttt{TechnicalArea} désigne le niveau de matériaux disponibles au local et peut prendre une valeur entre $1$ (\textit{pas assez équipé}) et $5$ (\textit{très bien équipé}).
+  \item chaque tuple dans la table \texttt{Travel} désigne un voyage effectué par un voyageur à un temps et une date données, en prenant un véhicule d'une ligne depuis un arrêt spécifié.
 \end{itemize}
 
+La table des voyages n'admet aucune mesure; on se contentera d'utiliser les informations fournies par les dimensions qui suffiront largement pour analyser la fréquentation des différentes lignes et véhicules correspondant.
+
+\subsubsection{Remarques}
+\begin{itemize}
+  \item l'attribut \textbf{id\_travel} de la table \texttt{Travel} est la clé primaire utilisée pour identifier un voyage (\textit{dimension dégénérée}).
+  \item l'attribut \textbf{nb\_served\_people} de la table \texttt{Line} désigne le nombre de passagers désservis par la ligne.
+  \item l'attribut \textbf{place} de la table \texttt{Station} désigne l'endroit où se trouve la station (avenue $X$, rue $Y$, $\dots$).
+  \item l'attribut \textbf{wheelchair\_capacity} de la table \texttt{Vehicle} désigne la capacité théorique maximale de personnes handicappées et de leurs fauteuils roulants.
+\end{itemize}
+
+\section{Modélisation des maintenances}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.4]{images/maintenance_datamart.png}
+  \caption{modèle en étoile de l'action \og maintenance \fg}
+\end{figure}
+
+Les mesures de la table des maintenances sont :
+\begin{itemize}
+  \item \texttt{cost} : mesure additive désignant le coût de maintenance d'un véhicule pour une transaction donnée.
+\end{itemize}
+
+\subsection{Discussion}
+\begin{itemize}
+  \item chaque tuple dans la table \texttt{Employee} désigne un employé chez \textit{tam-voyages}.
+  \item chaque tuple dans la table \texttt{TechnicalArea} désigne un dépôt utilisé par \textit{tam-voyages} pour maintenir des véhicules.
+  \item chaque tuple dans la table \texttt{MaintenanceType} désigne un type de maintenance effectuée (\textit{e.g. changement de roues, maintenance du moteur, $\dots$})
+  \item chaque tuple dans la table \texttt{OperationType} désigne une opération faite lors de la maintenance d'un véhicule (\textit{i.e. type de transaction effectuée}). Les opérations possibles définies :
+  \begin{enumerate}
+    \item conduire le véhicule concerné vers un dépôt de maintenance
+    \item allouer un garage pour la maintenance du véhicule
+    \item attribuer la maintenance du véhicule à un spécialiste
+    \item éventuellement attendre l'acquisition de ressources nécessaires à la maintenance du véhicule
+    \item mise en marche du véhicule dans le réseau après sa maintenance
+  \end{enumerate}
+  \item chaque tuple dans la table \texttt{Maintenance} désigne l'état d'une opération lors de la maintenance d'un véhicule (\textit{i.e. le grain choisi pour la maintenance est la transaction}).
+\end{itemize}
+
+\subsubsection{Remarques}
+l'attribut \textbf{equipment\_level} de la table \texttt{TechnicalArea} désigne le niveau de matériaux disponibles au local et peut prendre une valeur entre $1$ (\textit{pas assez équipé}) et $5$ (\textit{très bien équipé}).
+
+\section{Entrepôt de données obtenu}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.4]{images/data_warehouse.png}
+  \caption{le \textit{data warehouse} résultant}
+\end{figure}
+
+\newpage
+
 \chapter{Implémentation}
+\section{Choix des technologies}
+Pour l'implémentation de notre entrepôt de données, nous avons décidé d'utiliser \texttt{Oracle}. Pour chaque dimension partagée entre les deux \textit{data marts} nous avons créé deux vues virtuelles selon le niveau de détails nécessité pour chaque analyse.
 
 \chapter{Conclusion}
 
