@@ -1,3 +1,9 @@
+/**
+@author Jérémy Bourgin
+@author Joseph Saba
+@author Tasnim Shaqura
+*/
+
 CREATE VIEW Date_travel
 AS SELECT * FROM Date_t;
 

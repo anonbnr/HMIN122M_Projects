@@ -62,9 +62,9 @@ Jérémy \textsc{Bourgin} % Student
 
 \chapter{Introduction}
 \section{Problématiques}
-Dans le cadre du mini-projet du module \textbf{HMIN122M}, nous avons décidé de modéliser un entrepôts de données pour le réseau de transport publique de Montpellier, \textit{tam-voyages}. Pour ce faire, nous avons proposé des \textit{data marts} formant le \textit{data warehouse} et permettant de réaliser des requêtes analytiques sur un ensemble important de données. Cette modélisation permettra ainsi de mettre en \oe{}uvre un outil d'analyse permettant de bien répondre aux problématiques suivantes :
+Dans le cadre du mini-projet du module \textbf{HMIN122M}, nous avons décidé de modéliser un entrepôt de données pour le réseau de transport publique de Montpellier, \textit{tam-voyages}. Pour ce faire, nous avons proposé des \textit{data marts} formant le \textit{data warehouse} et permettant de réaliser des requêtes analytiques sur un ensemble important de données. Cette modélisation permettra ainsi de mettre en \oe{}uvre un outil d'analyse permettant de bien répondre aux problématiques suivantes :
 \begin{enumerate}
-  \item Comment \textit{tam-voyages} pourront-ils augmenter leur taux de ventes en se basant sur la circulation du réseau\footnote{en particulier en examinant les lignes de tramway et les bus} ?
+  \item Comment \textit{tam-voyages} pourront-ils profiter de la fréquentation de leurs véhicules en se basant sur la circulation du réseau\footnote{en particulier en examinant les lignes de tramway et les bus} pour améliorer la qualité de leur service (e.g. \textit{nombre de véhicules à envoyer sur une ligne pendant une certaine période de la journée})?
   \item Comment \textit{tam-voyages} pourront-ils suivre l'évolution et la maintenance de leurs matériaux de manière à réduire les dépenses qui y sont associées ?
 \end{enumerate}
 
@@ -124,6 +124,54 @@ Les actions les plus pertinentes à analyser vis-à-vis les problématiques avan
 \end{enumerate}
 
 \chapter{Modélisation}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.6]{images/voyages_datamart.png}
+  \caption{modèle en étoile de l'action \og voyages \fg}
+\end{figure}
+
+\newpage
+
+La table des voyages n'admet aucune mesure; on se contentera d'utiliser les informations fournies par les dimensions qui suffiront largement pour analyser la fréquentation des différentes lignes et véhicules correspondant.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.65]{images/maintenance_datamart.png}
+  \caption{modèle en étoile de l'action \og maintenance \fg}
+\end{figure}
+
+Les mesures de la table des maintenances sont :
+\begin{itemize}
+  \item \texttt{maintenance\_duration} : mesure semi-additive désignant la durée de maintenance d'un véhicule
+  \item \texttt{completion\_status} : mesure non additive désignant l'état d'une opération de maintenance pour un véhicule donné
+\end{itemize}
+
+\newpage
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.6]{images/data_warehouse.png}
+  \caption{le \textit{data warehouse} résultant}
+\end{figure}
+
+\newpage
+
+\subsubsection{Remarques}
+\begin{itemize}
+  \item l'attribut \textbf{id\_travel} de la table \texttt{Travel} est la clé primaire utilisée pour identifier un voyage (\textit{dimension dégénérée}).
+  \item l'attribut \textbf{nb\_served\_people} de la table \texttt{Line} désigne le nombre de passagers désservis par la ligne.
+  \item l'attribut \textbf{place} de la table \texttt{Station} désigne l'endroit où se trouve la station (avenue $X$, rue $Y$, $\dots$).
+  \item l'attribut \textbf{wheelchair\_capacity} de la table \texttt{Vehicle} désigne la capacité théorique maximale de personnes handicappées et de leurs fauteuils roulants.
+  \item la table \texttt{Traveler} est une dimension qui contient deux dimensions corrélées (les abonnés et le voyageur anonyme non abonné utilisant un ticket) :
+  \begin{enumerate}
+    \item si le voyageur est \textbf{abonné}, alors on traite le tuple correspondant en tant qu'un \textbf{voyageur concret} dont les informations sont à notre disposition.
+    \item sinon, tous les \textbf{voyageurs non abonnés} seront représentés par un seul tuple.
+    \item cette décision de corrélation est utilisée pour éviter la normalisation et l'introduction d'une superclasse abstraite étendue par les classes désignant les voyageurs abonnés et non abonnés.
+    \item nous utilisons ainsi l'attribut \textbf{anonymous} afin de distinguer les deux types de voyageurs. En effet, \textbf{anonymous} valera \textit{true} quand le voyageur est non abonné, sinon il valera \textit{true}.
+    \item le tuple du \textbf{voyageur non abonné} contiendra ainsi des \textbf{valeurs nulles} pour les attributs décrivant un \textbf{voyageur abonné}.
+  \end{enumerate}
+  \item l'attribut \textbf{equipment\_level} de la table \texttt{TechnicalArea} désigne le niveau de matériaux disponibles au local et peut prendre une valeur entre $1$ (\textit{pas assez équipé}) et $5$ (\textit{très bien équipé}).
+\end{itemize}
 
 \chapter{Implémentation}
 
