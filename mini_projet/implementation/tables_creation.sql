@@ -164,10 +164,8 @@ CREATE TABLE Maintenance(
 	id_technical_area INT,
 	id_maintenance_type INT,
 	id_operation_type INT,
-	operation_status INT,
+	status INT,
 	cost NUMBER,
-	maintenance_duration INT,
-	completion_status INT,
   CONSTRAINT PK_MAINTENANCE
     PRIMARY KEY(id, id_date, id_time, id_vehicle, id_employee, id_technical_area, id_maintenance_type),
   CONSTRAINT FK_MAINTENANCE_DATE
