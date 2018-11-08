@@ -1,12 +1,12 @@
 -- 1) le nombre de voyage par bus, utilisant des tickets pour le mois de juillet
 SELECT Travel.id_vehicle, COUNT(*) AS number_travel
 FROM Travel
-INNER JOIN Vehicle ON Travel.id_vehicle = Vehicle.id
+INNER JOIN Vehicle_travel ON Travel.id_vehicle = Vehicle_travel.id
 INNER JOIN Traveler ON Travel.id_traveler = Traveler.id
-INNER JOIN Date_t ON Travel.id_date = Date_t.id
-WHERE Vehicle.type = 'bus'
+INNER JOIN Date_travel ON Travel.id_date = Date_travel.id
+WHERE Vehicle_travel.type = 'bus'
 AND Traveler.anonymous = 1
-AND Date_t.month_year = 7
+AND Date_travel.month_year = 7
 GROUP BY Travel.id_vehicle
 ORDER BY Travel.id_vehicle;
 
@@ -17,10 +17,10 @@ INNER JOIN Line
 	ON Travel.id_line = Line.id
 INNER JOIN Traveler
 	ON Travel.id_traveler = Traveler.id
-INNER JOIN Date_t
-	ON Travel.id_date = Date_t.id
-WHERE Date_t.year = EXTRACT(YEAR FROM SYSDATE)
-AND Date_t.month_year >= (EXTRACT(MONTH FROM SYSDATE) - 2)
+INNER JOIN Date_travel
+	ON Travel.id_date = Date_travel.id
+WHERE Date_travel.year = EXTRACT(YEAR FROM SYSDATE)
+AND Date_travel.month_year >= (EXTRACT(MONTH FROM SYSDATE) - 2)
 AND Traveler.anonymous = 0
 GROUP BY Line.num_line
 ORDER BY Line.num_line;
@@ -44,27 +44,27 @@ HAVING COUNT(Station.id) = (SELECT MAX(COUNT(*))
 ORDER BY Line.num_line, Station.id;
 
 -- 4) Le nombre de voyage par heure pour chaque ligne
-SELECT Line.num_line, Time_t.hours AS Hour, COUNT(*) AS number_travel
+SELECT Line.num_line, Time_travel.hours AS Hour, COUNT(*) AS number_travel
 FROM Travel
 INNER JOIN Line ON Travel.id_line = Line.id
-INNER JOIN Time_t ON Travel.id_time = Time_t.id
-GROUP BY Line.num_line, Time_t.hours
-ORDER BY Line.num_line, Time_t.hours;
+INNER JOIN Time_travel ON Travel.id_time = Time_travel.id
+GROUP BY Line.num_line, Time_travel.hours
+ORDER BY Line.num_line, Time_travel.hours;
 
 -- 5) Pour chaque ligne quelle est le véhicule le plus utilisé par les voyageurs
-SELECT Line.num_line, Vehicle.id, COUNT(Vehicle.id) AS number_vehicle
+SELECT Line.num_line, Vehicle_travel.id, COUNT(Vehicle_travel.id) AS number_vehicle
 FROM Travel
 INNER JOIN Line
 	ON Travel.id_line = Line.id
-INNER JOIN Vehicle
-	ON Travel.id_vehicle = Vehicle.id
-GROUP BY Line.num_line, Vehicle.id
-HAVING COUNT(Vehicle.id) = (SELECT MAX(COUNT(*))
+INNER JOIN Vehicle_travel
+	ON Travel.id_vehicle = Vehicle_travel.id
+GROUP BY Line.num_line, Vehicle_travel.id
+HAVING COUNT(Vehicle_travel.id) = (SELECT MAX(COUNT(*))
 							FROM Travel
 							INNER JOIN Line sl
 								ON Travel.id_line = sl.id
-							INNER JOIN Vehicle
-								ON Travel.id_vehicle = Vehicle.id
+							INNER JOIN Vehicle_travel
+								ON Travel.id_vehicle = Vehicle_travel.id
 							WHERE sl.num_line = Line.num_line
-							GROUP BY Vehicle.id)
-ORDER BY Line.num_line, Vehicle.id;
+							GROUP BY Vehicle_travel.id)
+ORDER BY Line.num_line, Vehicle_travel.id;

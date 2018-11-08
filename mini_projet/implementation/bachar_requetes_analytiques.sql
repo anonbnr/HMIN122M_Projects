@@ -18,3 +18,14 @@ INNER JOIN Line ON Travel.id_line = Line.id
 INNER JOIN Time_t ON Travel.id_time = Time_t.id
 GROUP BY Line.num_line, Time_t.hours
 ORDER BY Line.num_line, Time_t.hours;
+
+
+-- 8) les X premiers véhicules qui ont nécessité le plus de maintenance pour les 6 dernier mois.
+SELECT Maintenance.id_vehicle, COUNT(*) AS number_maintenance
+FROM Maintenance
+INNER JOIN Vehicle ON Maintenance.id_vehicle = Vehicle.id
+INNER JOIN Date_t ON Maintenance.id_date = Date_t.id
+WHERE Date_t.month_year >= (EXTRACT(MONTH FROM SYSDATE) - 6)
+AND rownum < 5
+GROUP BY Maintenance.id_vehicle
+ORDER BY number_maintenance DESC;
