@@ -147,18 +147,35 @@ CREATE TABLE Travel(
 		FOREIGN KEY(id_vehicle) REFERENCES Vehicle(id)
 );
 
+CREATE TABLE Operation_Type(
+	id INT,
+	name varchar(50),
+	CONSTRAINT PK_OPERATION 
+		PRIMARY KEY(id)
+);
+
+CREATE TABLE Operation_Status(
+	id INT,
+	name varchar(20),
+	CONSTRAINT FK_OPERATION_STATUS
+		PRIMARY KEY(id)
+);
+
 CREATE TABLE Maintenance(
+	id INT,
 	id_date INT,
 	id_time INT,
 	id_vehicle INT,
 	id_employee INT,
 	id_technical_area INT,
 	id_maintenance_type INT,
+	id_operation_type INT,
+	id_operation_status INT,
 	cost NUMBER,
 	estimated_time INT,
 	completion_status INT,
   CONSTRAINT PK_MAINTENANCE
-    PRIMARY KEY(id_date, id_time, id_vehicle, id_employee, id_technical_area, id_maintenance_type),
+    PRIMARY KEY(id, id_date, id_time, id_vehicle, id_employee, id_technical_area, id_maintenance_type),
   CONSTRAINT FK_MAINTENANCE_DATE
     FOREIGN KEY(id_date) REFERENCES Date_t(id),
   CONSTRAINT FK_MAINTENANCE_TIME
@@ -170,5 +187,10 @@ CREATE TABLE Maintenance(
   CONSTRAINT FK_MAINTENANCE_TECHNICAL_AREA
     FOREIGN KEY(id_technical_area) REFERENCES TechnicalArea(id),
   CONSTRAINT FK_MAINTENANCE_MAIN_TYPE
-    FOREIGN KEY(id_maintenance_type) REFERENCES MaintenanceType(id)
+    FOREIGN KEY(id_maintenance_type) REFERENCES MaintenanceType(id),
+  CONSTRAINT FK_MAINTENANCE_OPERATION_TYPE
+    FOREIGN KEY(id_operation_type) REFERENCES Operation_Type(id), 
+  CONSTRAINT FK_MAINTENANCE_OPERATION_STATUS
+    FOREIGN KEY(id_operation_status) REFERENCES Operation_Status(id)  
+
 );
