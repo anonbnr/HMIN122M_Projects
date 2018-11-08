@@ -30,5 +30,5 @@ pour les 6 dernier mois.
 9) Quel est le type de problème le plus fréquent ?
 > Tasnim (check)
 
-10) Nombre de maintenance par année pour chaque local technique
+10) Nombre de maintenance par mois pour chaque local technique
 > Tasnim (check)
