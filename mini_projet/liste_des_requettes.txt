@@ -6,7 +6,7 @@ le mois de juillet
 
 2) le nombre de voyageurs abonnés par ligne pour chaque voyage
 pour les deux derniers mois.
-> Jérémy
+> Jérémy (check)
 
 3) Quelle est l'arrêt le plus fréquenté pour chaque ligne ?
 > Joseph
@@ -15,7 +15,7 @@ pour les deux derniers mois.
 > Joseph
 
 5) Pour chaque ligne quelle est le véhicule le plus utilisé par les voyageurs
-> Jérémy
+> Jérémy (check)
 
 6) le nombre de bus maintenus pour le mois de septembre 2018.
 > Jérémy

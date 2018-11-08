@@ -1,3 +1,6 @@
+-- 2) le nombre de voyageurs abonnés par ligne pour chaque voyage
+-- pour les deux derniers mois.
+
 SELECT Line.num_line, COUNT(Traveler.id) AS number_travelers
 FROM Travel
 INNER JOIN Line
@@ -11,6 +14,8 @@ AND Date_t.month_year >= (EXTRACT(MONTH FROM SYSDATE) - 2)
 AND Traveler.anonymous = 0
 GROUP BY Line.num_line
 ORDER BY Line.num_line;
+
+-- 5) Pour chaque ligne quelle est le véhicule le plus utilisé par les voyageurs
 
 SELECT Line.num_line, Vehicle.id, COUNT(Vehicle.id) AS number_vehicle
 FROM Travel
@@ -29,8 +34,14 @@ HAVING COUNT(Vehicle.id) = (SELECT MAX(COUNT(*))
 							GROUP BY Vehicle.id)
 ORDER BY Line.num_line, Vehicle.id;
 
+-- 6) le nombre de bus maintenus pour le mois de septembre 2018.
+
 SELECT COUNT(*) AS number_maintained_bus
 FROM Maintenance
 INNER JOIN Vehicle
 	ON Maintenance.id_vehicle = Vehicle.id
-WHERE Vehicle.type = 'bus';
+INNER JOIN Date_t
+	ON Maintenance.id_date = Date_t.id
+WHERE Vehicle.type = 'bus'
+AND Date_t.month_year = 9
+AND Date_t.year = 2018;
