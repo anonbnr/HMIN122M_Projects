@@ -178,11 +178,11 @@ Les mesures de la table des maintenances sont :
   \item chaque tuple dans la table \texttt{MaintenanceType} désigne un type de maintenance effectuée (\textit{e.g. changement de roues, maintenance du moteur, $\dots$})
   \item chaque tuple dans la table \texttt{OperationType} désigne une opération faite lors de la maintenance d'un véhicule (\textit{i.e. type de transaction effectuée}). Les opérations possibles définies :
   \begin{enumerate}
-    \item conduire le véhicule concerné vers un dépôt de maintenance
-    \item allouer un garage pour la maintenance du véhicule
-    \item attribuer la maintenance du véhicule à un spécialiste
-    \item éventuellement attendre l'acquisition de ressources nécessaires à la maintenance du véhicule
-    \item mise en marche du véhicule dans le réseau après sa maintenance
+    \item conduire le véhicule concerné vers un dépôt de maintenance (\textit{i.e. début de la maintenance})
+    \item allouer un garage pour la maintenance du véhicule.
+    \item attribuer la maintenance du véhicule à un spécialiste.
+    \item éventuellement attendre l'acquisition de ressources nécessaires à la maintenance du véhicule.
+    \item mise en marche du véhicule dans le réseau après sa maintenance (\textit{i.e. fin de la maintenance})
   \end{enumerate}
   \item chaque tuple dans la table \texttt{Maintenance} désigne l'état d'une opération lors de la maintenance d'un véhicule (\textit{i.e. le grain choisi pour la maintenance est la transaction}).
 \end{itemize}

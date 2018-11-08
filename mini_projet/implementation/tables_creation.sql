@@ -103,7 +103,7 @@ CREATE TABLE Employee(
 
 CREATE TABLE MaintenanceType(
   id INT,
-  maintenance_type VARCHAR(150),
+  maintenance_type VARCHAR(50),
   CONSTRAINT PK_MAINTENANCE_TYPE
     PRIMARY KEY(id)
 );

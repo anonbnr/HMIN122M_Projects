@@ -1,4 +1,4 @@
-
+/*MAINTENANCE*/
 INSERT INTO Maintenance VALUES (1, 5, 562, 71, 29, 1, 8, 1, 0, 0);
 INSERT INTO Maintenance VALUES (1, 5, 592, 71, 29, 1, 8, 1, 1, 5);
 INSERT INTO Maintenance VALUES (1, 5, 597, 71, 35, 1, 8, 2, 0, 0);
@@ -195,8 +195,6 @@ INSERT INTO Maintenance VALUES (16, 269, 590, 92, 165,2, 3, 4, 0, 0);
 INSERT INTO Maintenance VALUES (16, 269, 897, 92, 165,2, 3, 4, 1, 380);
 INSERT INTO Maintenance VALUES (16, 269, 990, 92, 17, 2, 3, 5, 0, 0);
 INSERT INTO Maintenance VALUES (16, 269, 100, 92, 17, 2, 3, 5, 1, 8);
-
-INSERT INTO Maintenance VALUES (id, date, time, vehicle, employee, technicalarea, maintenancetype, operationtype, status, cost);
 
 INSERT INTO Maintenance VALUES (17, 270, 560, 78, 17, 2, 3, 1, 0, 0);
 INSERT INTO Maintenance VALUES (17, 270, 578, 78, 17, 2, 3, 1, 1, 8);
