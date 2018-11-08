@@ -1,4 +1,4 @@
-Requettes pour le projet Data Warehouse
+﻿Requettes pour le projet Data Warehouse
 
 1) le nombre de voyage par bus, utilisant des tickets pour
 le mois de juillet
@@ -14,7 +14,7 @@ pour les deux derniers mois.
 4) Le nombre de voyage par heure pour chaque ligne
 > Joseph
 
-5) Pour chaque ligne quelle est le véhicule le plus utilisé
+5) Pour chaque ligne quelle est le véhicule le plus utilisé par les voyageurs
 > Jérémy
 
 6) le nombre de bus maintenus pour le mois de septembre 2018.
