@@ -79,7 +79,7 @@ CREATE TABLE Traveler(
 	surname VARCHAR(50),
 	gender VARCHAR(8),
 	nationality VARCHAR(50),
-	subscription_type VARCHAR(10),
+	subscription_type VARCHAR(20),
 	subscription_fees NUMBER(5, 2),
 	CONSTRAINT PK_TRAVELER
 		PRIMARY KEY(id)

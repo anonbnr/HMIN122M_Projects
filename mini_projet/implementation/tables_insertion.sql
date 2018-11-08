@@ -3087,7 +3087,7 @@ INSERT INTO MaintenanceType VALUES (13,'Bus Body',2);
 INSERT INTO MaintenanceType VALUES (14,'Air Conditioner',2);
 INSERT INTO MaintenanceType VALUES (15,'The Wheel',1);
 INSERT INTO MaintenanceType VALUES (16,'Painting',1);
-
+INSERT INTO MaintenanceType VALUES (17,'Unknown',1);
 /*TECHNICAL AREA*/
 INSERT INTO TechnicalArea VALUES (1, '643 rue de l''Agathois', 50, 'bus;tram', 21300, 2000, 4, 400);
 INSERT INTO TechnicalArea VALUES (2, 'av du Colonel Pavelet', 20, 'bus;tram', 19000, 1400, 3, 200);
