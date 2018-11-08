@@ -30,7 +30,7 @@ pour les 6 dernier mois.
 > Tasnim (check)
 
 10) Nombre de maintenance par mois pour chaque local technique
-> Tasnim (check)
+> Tas nim (check)
 
 11) Le nombre de véhicule qui ont été maintenu le matin, et le nombre de véhicule qui ont été maintenu l'après midi
 > Jérémy (check)
