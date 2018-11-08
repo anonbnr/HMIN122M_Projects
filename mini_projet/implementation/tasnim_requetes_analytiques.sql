@@ -7,10 +7,7 @@ INNER JOIN MaintenanceType
 GROUP BY MaintenanceType.maintenance_type
 HAVING MAX(totalCount) >0
 
-------------------------------------------------------------------------------------------------------------------------
-
 --10) Nombre de maintenance par année pour chaque local technique?
-
 SELECT Maintenance.id_date,TechnicalArea.address ,COUNT(Maintenance.id_technical_area)
 FROM  Maintenance
 INNER JOIN  TechnicalArea
