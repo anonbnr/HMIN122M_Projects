@@ -1,3 +1,8 @@
+/**
+	@author Bachar Rima
+	@author Jérémy Bourgin
+*/
+
 -- 1) le nombre de voyage par bus, utilisant des tickets pour le mois de juillet
 SELECT Travel.id_vehicle, COUNT(*) AS number_travel
 FROM Travel
@@ -25,7 +30,7 @@ AND Traveler.anonymous = 0
 GROUP BY Line.num_line
 ORDER BY Line.num_line;
 
--- 3) Quelle est l'arrêt le plus fréquenté pour chaque ligne ?
+-- 3) l'arrêt le plus fréquenté par ligne
 SELECT Line.num_line, Station.id, Station.name, COUNT(station.id) AS frequentation
 FROM Travel
 INNER JOIN Line
@@ -43,7 +48,7 @@ HAVING COUNT(Station.id) = (SELECT MAX(COUNT(*))
 							GROUP BY Station.id)
 ORDER BY Line.num_line, Station.id;
 
--- 4) Le nombre de voyage par heure pour chaque ligne
+-- 4) le nombre de voyages par heure par ligne
 SELECT Line.num_line, Time_travel.hours AS Hour, COUNT(*) AS number_travel
 FROM Travel
 INNER JOIN Line ON Travel.id_line = Line.id
@@ -51,7 +56,7 @@ INNER JOIN Time_travel ON Travel.id_time = Time_travel.id
 GROUP BY Line.num_line, Time_travel.hours
 ORDER BY Line.num_line, Time_travel.hours;
 
--- 5) Pour chaque ligne quelle est le véhicule le plus utilisé par les voyageurs
+-- 5) le véhicule le plus utilisé par les voyageurs par ligne
 SELECT Line.num_line, Vehicle_travel.id, COUNT(Vehicle_travel.id) AS number_vehicle
 FROM Travel
 INNER JOIN Line

@@ -1,17 +1,15 @@
 Dimensions Fixes :
 ==================
-- Line : 42 lignes
-- Date : 365 lignes
-- Station : 763 lignes
-- Vehicle : 262 lignes
-  a. 83 tram
-  b. 179 bus
-- Time : 1440 lignes
-- TechnicalArea : 2 lignes
-- MaintenanceType : ~500 lignes
-- Employee : 1 114 lignes
+- Date : 365 lignes (check)
+- Time : 1440 lignes (check)
+- Vehicle : 270 lignes (check)
+- Line : 116 lignes (42 lignes de véhicules mais plusieurs itinéraires)
+- Station : 654 lignes
+- TechnicalArea : 2 lignes (check)
+- MaintenanceType : ~500 lignes (check)
+- Employee : 1 114 lignes (check)
 
-Dimensions00 Variables:
+Dimensions Variables:
 =====================
 - Voyageurs : 388k/jour -> 141 620 000/an
   a. 120k/bus

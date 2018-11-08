@@ -1,3 +1,9 @@
+/**
+	@author Bachar Rima
+	@author Jérémy Bourgin
+	@author Tasnim Shaqura
+*/
+
 -- 6) le coût total de maintenance de chaque véhicule
 SELECT Vehicle_maintenance.id, SUM(cost)
 FROM Maintenance
@@ -5,7 +11,7 @@ INNER JOIN Vehicle_maintenance
 	ON Maintenance.id_vehicle = Vehicle_maintenance.id
 GROUP BY Vehicle_maintenance.id;
 
--- 7) le nombre total de maintenances effectués sur les bus par employé pour l'année 2018
+-- 7) le nombre total de maintenances effectuées sur les bus par employé pour l'année 2018
 SELECT Employee.id AS Employee, COUNT(*) as intervention
 FROM Maintenance
 INNER JOIN Employee
@@ -18,7 +24,7 @@ WHERE Vehicle_maintenance.type = 'bus'
 AND Date_maintenance.year = 2018
 GROUP BY Employee.id;
 
--- 8) le nombre total de maintenances effectué par véhicule pour les 6 dernier mois.
+-- 8) le nombre total de maintenances effectuées par véhicule pour les 6 dernier mois.
 SELECT Maintenance.id_vehicle, COUNT(*) AS number_maintenance
 FROM Maintenance
 INNER JOIN Vehicle_maintenance ON Maintenance.id_vehicle = Vehicle_maintenance.id
@@ -28,7 +34,7 @@ AND Maintenance.id_operation_type = 5
 GROUP BY Maintenance.id_vehicle
 ORDER BY number_maintenance DESC;
 
---9) Quel est le type de problème le plus fréquent ?
+--9) le type de maintenance le plus fréquent
 SELECT MaintenanceType.maintenance_type AS type, COUNT(Maintenance.id_maintenance_type) AS totalCount
 FROM Maintenance
 INNER JOIN MaintenanceType
@@ -38,7 +44,7 @@ HAVING COUNT(Maintenance.id_maintenance_type) = (SELECT MAX(COUNT(*))
 												FROM Maintenance
 												GROUP BY Maintenance.id_maintenance_type);
 
---10) Le nombre de maintenances par mois pour chaque local technique ?
+--10) Le nombre de maintenances par mois pour chaque local technique
 SELECT TechnicalArea.id, Date_maintenance.month_year, COUNT(Maintenance.id_technical_area) AS numberMaintenance
 FROM  Maintenance
 INNER JOIN  TechnicalArea
@@ -48,7 +54,7 @@ INNER JOIN Date_maintenance
 GROUP BY TechnicalArea.id, Date_maintenance.month_year
 ORDER BY TechnicalArea.id, Date_maintenance.month_year;
 
--- 11) Le nombre de véhicules qui ont été maintenus le matin, et le nombre de véhicule qui ont été maintenu l'après midi
+-- 11) Le nombre de véhicules maintenus le matin, et ceux maintenus l'après midi
 SELECT Time_maintenance.AM_PM_indicator, COUNT(Vehicle_maintenance.id) AS numberMaintenance
 FROM Maintenance
 INNER JOIN Vehicle_maintenance
