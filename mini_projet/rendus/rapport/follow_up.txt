@@ -1,0 +1,16 @@
+Model:
+- rename estimated_time into maintenance_duration in maintenance data-mart photo
+
+Code:
+- change attribute subscription_type into VARCHAR(20)
+
+
+Report
+Introduction :
+  - include requêtes analytiques once it's completed
+  - review entire introduction by group
+Modélisation :
+  - ajouter les modèles en étoile
+  - ajouter le data warehouse
+  - modifier le contenu
+  - review entire modélisation by group
