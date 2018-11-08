@@ -104,7 +104,6 @@ CREATE TABLE Employee(
 CREATE TABLE MaintenanceType(
   id INT,
   maintenance_type VARCHAR(150),
-  nb_completed_levels INT, --how many steps in the maintenance process
   CONSTRAINT PK_MAINTENANCE_TYPE
     PRIMARY KEY(id)
 );
