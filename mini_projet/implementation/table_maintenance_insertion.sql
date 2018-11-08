@@ -82,3 +82,25 @@ INSERT INTO Maintenance VALUES (7, 41,870, 214, 149, 2, 16, 4, 0, 0);
 INSERT INTO Maintenance VALUES (7, 41,918, 214, 149, 2, 16, 4, 1, 26);
 INSERT INTO Maintenance VALUES (7, 41,923, 214, 45, 2, 16, 5, 0, 0);
 INSERT INTO Maintenance VALUES (7, 41,957, 214, 45, 2, 16, 5, 1, 8);
+
+INSERT INTO Maintenance VALUES (8, 50,616, 6, 40, 2, 16, 1, 0, 0);
+INSERT INTO Maintenance VALUES (8, 50,629, 6, 40, 2, 16, 1, 1, 8);
+
+INSERT INTO Maintenance VALUES (8, 50,630, 6, 23, 2, 16, 2, 0, 0);
+INSERT INTO Maintenance VALUES (8, 50,633, 6, 23, 2, 16, 2, 1, 0);
+
+INSERT INTO Maintenance VALUES (8, 50,634, 6, 23, 2, 16, 3, 0, 0);
+INSERT INTO Maintenance VALUES (8, 50,638, 6, 23, 2, 16, 3, 1, 0);
+
+INSERT INTO Maintenance VALUES (8, 50,670, 6, 116, 2, 16, 4, 0, 0);
+INSERT INTO Maintenance VALUES (8, 50,840, 6, 116, 2, 16, 4, 1, 26);
+
+INSERT INTO Maintenance VALUES (8, 50,1021, 6, 116, 2, 16, 4, 0, 0);
+INSERT INTO Maintenance VALUES (8, 50,1080, 6, 116, 2, 16, 4, 1, 26);
+
+INSERT INTO Maintenance VALUES (8, 51,493, 6, 116, 2, 16, 4, 0, 0);
+INSERT INTO Maintenance VALUES (8, 51,631, 6, 116, 2, 16, 4, 1, 26);
+
+
+INSERT INTO Maintenance VALUES (8, 51,460, 6, 40, 2, 16, 5, 0, 0);
+INSERT INTO Maintenance VALUES (8, 51,473, 6, 40, 2, 16, 5, 1, 8);
