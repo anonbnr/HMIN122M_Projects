@@ -2,17 +2,17 @@
 
 1) le nombre de voyage par bus, utilisant des tickets pour
 le mois de juillet
-> Joseph (check & tested)
+> Bachar (check & tested)
 
 2) le nombre de voyageurs abonnés par ligne pour chaque voyage
 pour les deux derniers mois.
 > Jérémy (check & tested)
 
 3) Quelle est l'arrêt le plus fréquenté pour chaque ligne ?
-> Joseph (check & tested)
+> Jérémy (check & tested)
 
 4) Le nombre de voyage par heure pour chaque ligne
-> Joseph (check & tested)
+> Bachar (check & tested)
 
 5) Pour chaque ligne quelle est le véhicule le plus utilisé par les voyageurs
 > Jérémy (check & tested)
@@ -20,12 +20,12 @@ pour les deux derniers mois.
 6) le nombre de bus maintenus pour le mois de septembre 2018.
 > Jérémy (check)
 
-7) les X méchaniciens qui ont maintenu le plus de bus l'année précédente
-> Joseph
+7) les employés qui ont effectué le plus de maintenances sur les bus pour l'année 2018
+> Jérémy (check)
 
 8) les X premiers véhicules qui ont nécessité le plus de maintenance
 pour les 6 dernier mois.
-> Joseph
+> Bachar (check)
 
 9) Quel est le type de problème le plus fréquent ?
 > Tasnim (check)
