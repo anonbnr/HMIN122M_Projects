@@ -154,12 +154,6 @@ CREATE TABLE Operation_Type(
 		PRIMARY KEY(id)
 );
 
-CREATE TABLE Operation_Status(
-	id INT,
-	name varchar(20),
-	CONSTRAINT FK_OPERATION_STATUS
-		PRIMARY KEY(id)
-);
 
 CREATE TABLE Maintenance(
 	id INT,
@@ -170,7 +164,7 @@ CREATE TABLE Maintenance(
 	id_technical_area INT,
 	id_maintenance_type INT,
 	id_operation_type INT,
-	id_operation_status INT,
+	operation_status INT,
 	cost NUMBER,
 	maintenance_duration INT,
 	completion_status INT,
@@ -189,8 +183,6 @@ CREATE TABLE Maintenance(
   CONSTRAINT FK_MAINTENANCE_MAIN_TYPE
     FOREIGN KEY(id_maintenance_type) REFERENCES MaintenanceType(id),
   CONSTRAINT FK_MAINTENANCE_OPERATION_TYPE
-    FOREIGN KEY(id_operation_type) REFERENCES Operation_Type(id), 
-  CONSTRAINT FK_MAINTENANCE_OPERATION_STATUS
-    FOREIGN KEY(id_operation_status) REFERENCES Operation_Status(id)  
+    FOREIGN KEY(id_operation_type) REFERENCES Operation_Type(id)
 
 );
