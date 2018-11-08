@@ -16,9 +16,6 @@ AS SELECT * FROM Time_t;
 CREATE VIEW Time_maintenance
 AS SELECT * FROM Time_t;
 
-CREATE VIEW Time_maintenance
-AS SELECT * FROM Time_t;
-
 CREATE VIEW Vehicle_travel
 AS SELECT * FROM Vehicle;
 
