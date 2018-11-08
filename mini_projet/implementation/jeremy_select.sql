@@ -58,3 +58,12 @@ INNER JOIN Date_maintenance
 WHERE Vehicle_maintenance.type = 'bus'
 AND Date_maintenance.year = 2018
 GROUP BY Employee.id; 
+
+-- Le véhicule qui ont été maintenu le matin, et le nombre de véhicule qui ont été maintenu l'après midi
+SELECT Time_maintenance.AM_PM_indicator, COUNT(Vehicle_maintenance.id)
+FROM Maintenance
+INNER JOIN Vehicle_maintenance
+	ON Maintenance.id_vehicle = Vehicle_maintenance.id
+INNER JOIN Time_maintenance
+	ON Maintenance.id_time = Time_maintenance.id
+GROUP BY Time_maintenance.AM_PM_indicator;
