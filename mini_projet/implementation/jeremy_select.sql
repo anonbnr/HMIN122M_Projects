@@ -35,16 +35,11 @@ HAVING COUNT(Vehicle_travel.id) = (SELECT MAX(COUNT(*))
 ORDER BY Line.num_line, Vehicle_travel.id;
 
 -- 6) le nombre de bus maintenus pour le mois de septembre 2018.
-
-SELECT COUNT(*) AS number_maintained_bus
+SELECT Vehicle_maintenance.id, SUM(cost)
 FROM Maintenance
 INNER JOIN Vehicle_maintenance
 	ON Maintenance.id_vehicle = Vehicle_maintenance.id
-INNER JOIN Date_maintenance
-	ON Maintenance.id_date = Date_maintenance.id
-WHERE Vehicle_maintenance.type = 'bus'
-AND Date_maintenance.month_year = 9
-AND Date_maintenance.year = 2018;
+GROUP BY Vehicle_maintenance.id;
 
 -- 7) les X méchaniciens qui ont maintenu le plus de bus l'année précédente
 SELECT Employee.id, COUNT(*) as intervention

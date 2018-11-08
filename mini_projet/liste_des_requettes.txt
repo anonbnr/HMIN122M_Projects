@@ -17,8 +17,7 @@ pour les deux derniers mois.
 5) Pour chaque ligne quelle est le véhicule le plus utilisé par les voyageurs
 > Jérémy (check & tested)
 
-6) le nombre de bus maintenus pour le mois de septembre 2018.
-> Jérémy (check)
+6) Le coût en maintenance de chaque véhicule
 
 7) les employés qui ont effectué le plus de maintenances sur les bus pour l'année 2018
 > Jérémy (check)
