@@ -1,17 +1,19 @@
 --9)Quel est le type de problème le plus fréquent ?
 
-SELECT MaintenanceType.maintenance_type, COUNT(Maintenance.id_maintenance_type) as totalCount
+SELECT MaintenanceType.maintenance_type, COUNT(Maintenance.id_maintenance_type) AS totalCount
 FROM Maintenance
 INNER JOIN MaintenanceType
 	ON  MaintenanceType.id = Maintenance.id_maintenance_type
 GROUP BY MaintenanceType.maintenance_type
-HAVING MAX(totalCount) >0
+HAVING COUNT(Maintenance.id_maintenance_type) = (SELECT MAX(COUNT(*))
+												FROM Maintenance
+												GROUP BY Maintenance.id_maintenance_type);
 
 --10) Nombre de maintenance par année pour chaque local technique?
-SELECT Maintenance.id_date,TechnicalArea.address ,COUNT(Maintenance.id_technical_area)
+SELECT TechnicalArea.id, Date_maintenance.month_year, COUNT(Maintenance.id_technical_area)
 FROM  Maintenance
 INNER JOIN  TechnicalArea
 	ON  Maintenance.id_technical_area = TechnicalArea.id
-INNER JOIN Date_t
-	ON Maintenance.id_date = date_t.id
-GROUP BY Maintenance.id_date
+INNER JOIN Date_maintenance
+	ON Maintenance.id_date = Date_maintenance.id
+GROUP BY TechnicalArea.id, Date_maintenance.month_year;
