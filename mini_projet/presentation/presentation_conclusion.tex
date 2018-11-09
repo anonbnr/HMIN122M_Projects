@@ -1,0 +1,103 @@
+\documentclass[usenames,dvipsnames]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{xcolor}
+\usepackage{pifont}
+\usetheme{Singapore} %Boadilla | Bergen | Madrid | Antibes | Hannover | Singapore | Warsaw
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+%----------------------------------------------------------------------------------------
+%   TITLE INFORMATION
+%----------------------------------------------------------------------------------------
+\title{Entrepôts de données pour \textit{Tam voyages}}
+\subtitle{HMIN122M -- Entrepôts de Données et Big-Data}
+\author{B. Rima \and J. Saba \and T. Shaqura \and J. Bourgin}
+\institute[UM]{M1 Informatique AIGLE}
+\date{\today}
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%   TITLE FRAME
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\titlepage
+\end{frame}
+%----------------------------------------------------------------------------------------
+%   OUTLINE
+%----------------------------------------------------------------------------------------
+\begin{frame}{Sommaire}
+\tableofcontents
+\end{frame}
+%----------------------------------------------------------------------------------------
+%   INTRODUCTION
+%----------------------------------------------------------------------------------------
+\section{Introduction}
+\begin{frame}{Contexte du projet}{Introduction}
+\end{frame}
+
+\section{Modélisation}
+\begin{frame}{Contexte du projet}{Introduction}
+\end{frame}
+
+\section{Implémentation}
+\begin{frame}{Contexte du projet}{Introduction}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}{Conclusion (1/3)}
+Comme nous avons vu par la présentation que notre model répondu aux problématiques. 
+\begin{block}{Perspectives}
+Bien que notre model nous a permis de réaliser des analyses principal nous avons constaté qu’il était assez limité pour les 2 raisons :
+\begin{itemize}
+    \item Incapable de calculer le montant exact du chiffre d’affaires de tam-voyages. 
+    \item Difficile à connaître la fréquentation de chaque trajet effectué par un véhicule.
+\end{itemize}
+\end{block}
+\newpage
+
+\end{frame}
+\begin{frame}{Conclusion (2/3)}
+\begin{block}{Donc nous proposon la perspective d'évolution suivante: }
+\begin{itemize}
+    \item Data Marts  pour la vente des tickets et les abonnements
+    \begin{itemize}
+    \item 	L’ajout d’un Data mart ayant comme action la vente d’un ticket à 
+            \begin{itemize}
+                \item un voyageur
+                \item une date donnée
+                \item une mesure désignant le prix du ticket vendu
+            \end{itemize}
+    \item 	L’ajout d’un Data mart ayant comme action l’abonnement à 
+             \begin{itemize}
+            \item un voyageur
+            \item une date donnée 
+            \item mesures désignant les frais de l’abonnement et sa durée de validité
+            \end{itemize}
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}{Conclusion (3/3)}
+\begin{itemize}
+    \item Data Mart pour les trajets effectués par des véhicules
+        \begin{itemize}
+        \item 	l’ajout d’un Data Mart tel que chaque fait soit désigné par :
+                \begin{itemize}
+                \item un trajet effectué 
+                \item un véhicule sur une ligne du réseau de transport 
+                \item une date et une heure donnée
+                \item sans mesure
+                \end{itemize}
+        \item	l’idée à modifier la table des voyages pour raffiner les analyses de manière à inclure des informations supplémentaires sur les trajets
+        \item 	Un fait dans ladite table désignera ainsi un voyage effectué par un voyageur dans un véhicule faisant un trajet sur une ligne du réseau de transport à une date et une heure donnée
+        \item 	il faut lier la table des voyages avec la table des trajets 
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}
