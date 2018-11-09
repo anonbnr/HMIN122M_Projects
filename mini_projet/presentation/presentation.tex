@@ -95,7 +95,62 @@
 \end{frame}
 
 \section{Modélisation}
-\begin{frame}{Contexte du projet}{Introduction}
+\begin{frame}{Modélisation}{Choix des modèles pour les actions considérées}
+  \begin{description}
+    \item[voyages:] modèle en étoile détaillé.
+    \item[maintenance:] \textit{Record Transaction model}.
+  \end{description}
+\end{frame}
+
+\begin{frame}{Modélisation}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.27]{images/voyages_datamart.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Modélisation}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.27]{images/maintenance_datamart.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Modélisation}{\textit{Data Warehouse}}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.25]{images/data_warehouse.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Modélisation}{Estimation de la taille de l'entrepôt}
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Table} & \textbf{Taille}\\
+    \hline
+    \texttt{Date\_t} & $365$\\
+    \hline
+    \texttt{Time\_t} & $1440$\\
+    \hline
+    \texttt{Vehicle} & $270$\\
+    \hline
+    \texttt{Line} & $116$\\
+    \hline
+    \texttt{Station} & $654$\\
+    \hline
+    \texttt{TechnicalArea} & $2$\\
+    \hline
+    \texttt{MaintenanceType} & $\sim500$\\
+    \hline
+    \texttt{Employee} & $1144$\\
+    \hline
+    \texttt{Travel} & $128480000$\\
+    \hline
+  \end{tabular}
+  \caption{taille estimée de chaque table de l'entrepôt}
+\end{table}
 \end{frame}
 
 \section{Implémentation}
@@ -103,7 +158,7 @@
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.2]{images/Oracle.png}
-  \caption{What else besides Oracle?}
+  \caption{Oracle. What else?}
 \end{figure}
 \end{frame}
 
