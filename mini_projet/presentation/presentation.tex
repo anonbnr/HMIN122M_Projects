@@ -1,4 +1,4 @@
-\documentclass[usenames,dvipsnames]{beamer}
+\documentclass[a4paper,12pt,usenames,dvipsnames]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
@@ -16,6 +16,16 @@
 \author{B. Rima \and J. Saba \and T. Shaqura \and J. Bourgin}
 \institute[UM]{M1 Informatique AIGLE}
 \date{\today}
+\logo{\includegraphics[scale=0.2]{images/umLogo.png}}
+
+%----------------------------------------------------------------------------------------
+%   OUTLINE
+%----------------------------------------------------------------------------------------
+\AtBeginSection[]{
+  \begin{frame}{Sommaire}
+  \tableofcontents[currentsection]
+  \end{frame}
+}
 
 \begin{document}
 %----------------------------------------------------------------------------------------
@@ -25,16 +35,63 @@
 \titlepage
 \end{frame}
 %----------------------------------------------------------------------------------------
-%   OUTLINE
-%----------------------------------------------------------------------------------------
-\begin{frame}{Sommaire}
-\tableofcontents
-\end{frame}
-%----------------------------------------------------------------------------------------
 %   INTRODUCTION
 %----------------------------------------------------------------------------------------
 \section{Introduction}
-\begin{frame}{Contexte du projet}{Introduction}
+\begin{frame}{Objectifs de \textit{tam-voyages}}{Introduction}
+\begin{itemize}
+  \item<1-> augmenter le taux de vente des tickets;
+  \item<2-> augmenter le taux d'abonnements;
+  \item<3-> améliorer la qualité de service;
+  \item<4-> réduire les dépenses;
+  \item<5-> $\dots$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Problématiques}{Introduction}
+  \begin{block}{Problématique 1}
+    \og \textit{Comment peut-on tirer partie de la fréquentation des véhicules en se basant sur la circulation du réseau afin d'améliorer la qualité de service ?} \fg
+  \end{block}
+
+  \begin{block}{Problématique 2}
+    \og \textit{Comment peut-on suivre l'évolution et la maintenance des matériaux de manière à réduire les dépenses associées ?} \fg
+  \end{block}
+\end{frame}
+
+\begin{frame}{Actions et opérations possibles par \textit{tam-voyages}}{Introduction}
+  \begin{itemize}
+    \item<1-> \textcolor{OliveGreen}{voyages};
+    \item<2-> \textcolor{OliveGreen}{maintenance de véhicules};
+    \item<3-> vente de tickets et abonnements;
+    \item<4-> amendes;
+    \item<5-> $\dots$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Actions et opérations considérées}{Introduction}
+  \begin{block}{Voyages}
+    \texttt{Le voyage d'un voyageur via un véhicule d'une ligne du réseau à une heure et une date donnée}.
+  \end{block}
+
+  \begin{examples}
+    \begin{itemize}
+      \item<1-> \textit{le nombre de voyages via ticket par chaque bus pour le mois de juillet}
+      \item<2-> \textit{l'arrêt le plus fréquenté par chaque ligne du réseau}
+    \end{itemize}
+  \end{examples}
+\end{frame}
+
+\begin{frame}{Actions et opérations considérées}{Introduction}
+  \begin{block}{Maintenance de véhicules}
+    \texttt{Chaque transaction effectuée lors de la maintenance d'un véhicule à une heure et une date donnée}.
+  \end{block}
+
+  \begin{examples}
+    \begin{itemize}
+      \item<1-> \textit{le coût total de maintenance de chaque véhicule}
+      \item<2-> \textit{le nombre total de maintenances effectuées par véhicule pour les 6 dernier mois.}
+    \end{itemize}
+  \end{examples}
 \end{frame}
 
 \section{Modélisation}
